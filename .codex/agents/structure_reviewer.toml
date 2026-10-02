@@ -30,4 +30,15 @@ audit it. Return tool role structure, version, scope, exact findings and evidenc
 do not produce replacement prose or claim to be a blind first-time reader.
 Report runtime model and effort only from runtime metadata, otherwise unverified.
 The parent saves and adjudicates the report.
+When assigned reader-loop reconciliation, read tools/blind-review/READER_LOOP.md
+and the editor packet, fixed contract, all recorded reader observations and
+frozen artifact. Return the complete adopted-assessment candidate schema there:
+one goal row per lane/goal and one event row per lane/event, text-supported
+boundary judgments, and one smallest sufficient repair specification or null.
+Later recovery does not satisfy an earlier boundary. Missing observation is not
+proof of understanding. Do not dismiss barriers merely as minor or out of scope;
+preserve the actual sufficient scale and return to design when necessary.
+The primary adjudicates your candidate; you do not modify records or the draft.
+For lecture notes additionally read rules/prose-lecture.md and the prerequisite
+ladder, checking bridges at their first inference-bearing use.
 '''

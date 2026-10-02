@@ -20,11 +20,32 @@
 | 役割ごとの実際のモデル設定 | [.codex/agents](agents.md) |
 | 対象版とレビューの一致 | [CLI](../tools/README.md)のsnapshot / verify / record / readiness |
 | 一片ずつの本文提示と実観測の保持 | [補助の順次読者CLI](reader-runner.md)。隔離・理解の自動認定ではない |
+| 明示的な初見査読の入口 | [blind-referee](../.agents/skills/blind-referee/SKILL.md)、[独立した成果物の凍結](../tools/blind-review/README.md)。報告専用 |
+| 読者目標と観測に基づく修正の状態遷移 | [reader_loop.py](../tools/blind-review/READER_LOOP.md)。原本・契約固定、全員の目標／イベント照合、許可した修正、別読者で次の版を確認 |
+| 学部生向け講義の段階的な理解 | [undergraduate-lecture](../.agents/skills/undergraduate-lecture/SKILL.md)、[講義作法](../rules/prose-lecture.md)、専用読者役 |
+| 同じ会話での履歴書・申請書作成 | [application-interview](../.agents/skills/application-interview/SKILL.md)、[保存・再開・検査](../tools/application-interview/README.md)、質問候補／独立確認の二役 |
 
 基本論理は分野横断で維持する。数学固有の対象、特定の記号、数式のない要旨、
 固定の証明末尾、著者順、決まった言語の四成果物、個人のGit運用は共通の強制にしない。
 それらのうち必要なものはプロジェクトの契約で明示する。
 実証、質的・人文、レビュー固有の確認は [分野別契約](../rules/research-profiles.md) で補う。
+
+四つのskillの移植では、入口だけでなく補助コード・役割・保存状態も含めた。
+原型から意図的に変えた点は次のとおり。
+
+- 修正ラウンドの既定上限を外した。許可された範囲で収束まで続け、明示した
+  資源上限のみ `STOP_BUDGET`（規則上の `BUDGET_EXHAUSTED`）で未完了にする。
+- 講義ノートの学部前提を分野ごとに定める。数学では元の微積分・線形代数・
+  基本的な証明読解の水準を維持し、独自の決定的な議論は省略しない。
+- 初読者役は準備時に固定し、専用の学部読者も同じ状態管理に載せる。
+  実行区分を変えた読者IDの再利用、原稿が過去の版へ戻る循環も拒否する。
+- 汎用spawnしかない環境の設定引継ぎは既存の[モデル設定](agents.md)に揃えた。
+  情報隔離が成立したとは推測しない。補助CLIの記録をnativeと呼び替えない。
+- 申請書は論文パイプラインから分け、回答待ちで止める。回数無制限の論文修正を
+  本人への聞き取りに持ち込まない。個人の下書き・状態は公開対象に含めない。
+
+補助コードの成功は実際の読者起動を意味しない。状態機械が照合するのは記録の
+整合性・範囲・版で、読者の意味理解や申請書の要件適合は実物で判断する。
 
 ## 何を確かめたと言えるか
 

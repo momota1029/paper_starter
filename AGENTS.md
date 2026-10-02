@@ -6,6 +6,15 @@ below are relative to this root. Read selected instructions in full.
 
 ## Routing
 
+- Explicit `blind-referee` / 初見査読 command: read
+  [.agents/skills/blind-referee/SKILL.md](.agents/skills/blind-referee/SKILL.md).
+  This standalone entry is report-only, not permission to rewrite.
+- Undergraduate-accessible research lecture notes: use
+  [.agents/skills/undergraduate-lecture/SKILL.md](.agents/skills/undergraduate-lecture/SKILL.md)
+  as a paper-writing overlay, not a second pipeline.
+- CVs, grant/application forms, or resuming their interview: use
+  [.agents/skills/application-interview/SKILL.md](.agents/skills/application-interview/SKILL.md).
+  Keep the interview in this chat; it is not a manuscript-production task.
 - Drafting, revising, reviewing, or translating a manuscript: read
   [.agents/skills/paper-writing/SKILL.md](.agents/skills/paper-writing/SKILL.md).
 - Intake, project creation, indexes, or output organization: read
@@ -41,7 +50,11 @@ below are relative to this root. Read selected instructions in full.
    forward-reading procedure; no rules, design, expected answers, or history.
 8. Fix accepted defects and recheck affected dependencies. Never mark missing
    checks as passing, weaken reader goals to obtain a pass, or repeat an
-   unchanged evaluation until a favorable answer appears.
+   unchanged evaluation until a favorable answer appears. In an authorized
+   revision task, continue repair and fresh checking until scoped convergence;
+   no default total round cap. Authority, external-input, isolation and explicit
+   resource stops remain unfinished, not a pass. Application interviews pause
+   for actual user answers rather than self-generating more rounds.
 9. Work within the request. Review-only means report-only. Narrow edits do not
    require regenerating companions or running a full panel. A missing author
    decision blocks only dependent work.

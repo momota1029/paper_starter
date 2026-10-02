@@ -190,3 +190,19 @@ python3 tools/paper.py check
 ```
 
 テストの架空のpass報告はソフトウェアの分岐検査専用で、実際の論文の査読結果ではない。
+
+## Specialized workflows
+
+- [Blind-review inputs](blind-review/README.md): freeze a standalone PDF or
+  self-contained text and prepare one/two actual first-reader handoffs.
+- [Reader-contract loop](blind-review/READER_LOOP.md): immutable goals, baseline,
+  source hashes, observed reports, adopted repairs and fresh rounds; no default
+  total round cap. Does not spawn agents or rewrite prose itself.
+- [Application interview](application-interview/README.md): same-chat CV/grant
+  checkpoints and private drafts, with honest incomplete/complete checks.
+
+These do not replace the whole-manuscript commands above. A reader-loop
+`HUMAN_READ` state is not a successful `paper.py readiness` check. Preserve actual
+reader observations as evidence when preparing the normal final report; do not
+invent missing final-report or human fields. The supplementary text reader CLI
+has its own receipts and isolation checks; never relabel those executions native.

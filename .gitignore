@@ -9,6 +9,7 @@
 !/refs/README.md
 /index.bib
 /.paper-local/
+/.application-local/
 /.venv/
 __pycache__/
 *.py[cod]

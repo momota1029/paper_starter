@@ -1,0 +1,5 @@
+interface:
+  display_name: "初見査読"
+  short_description: "固定した成果物を独立した初読者へ渡す明示コマンド"
+policy:
+  allow_implicit_invocation: false

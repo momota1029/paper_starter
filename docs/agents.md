@@ -26,9 +26,12 @@
 | 原稿を初めて読む読者の理解を観測 | [blind_reader](../.codex/agents/blind_reader.toml) | Luna | `reader`。専門性の保証には使わない |
 | 難しい読解、必要な修正後も残る読書障害の再確認 | [blind_reader_sol](../.codex/agents/blind_reader_sol.toml) | Sol | `reader`。履歴を継承しない新しい初読者 |
 | 生成済み PDF・HTML 等の表示・組版確認 | [render_reviewer](../.codex/agents/render_reviewer.toml) | Luna | `render`。実際に表示を見た範囲だけ報告 |
+| 学部水準の講義ノートの前提知識・理解の観測 | [undergraduate_reader](../.codex/agents/undergraduate_reader.toml) | Luna | 通常の初読者枠を置換。概念を使う前の橋渡しを観測 |
+| 履歴書・申請書の項目抽出や質問候補 | [application_interviewer](../.codex/agents/application_interviewer.toml) | Luna | 裏方の読み取り役。主担当が同じ会話で通常一問を聞く |
+| 履歴書・申請書の事実・要件の確認 | [application_reviewer](../.codex/agents/application_reviewer.toml) | Luna | 原稿制作から独立した限定チェック。資格や内容の曖昧さはSolへ |
 | 現行版の人間による最終通読 | 人間の担当者 | 対象外 | `human`。AI の定義を作らず、AI の報告で代用しない |
 
-`Luna` は `gpt-6-luna`、`Sol` は `gpt-6.1-sol` の略記。表の報告区分は [tools/paper.py](../tools/paper.py) の役割名に対応する。モデル名、役割名、実行ごとの `reviewer_id` は別物である。同じ役割でも各独立実行には別の ID を付け、設計・執筆に参加した ID を記録する。初読者と情報を持つ専門監査者を同一実行で兼任させない。
+`Luna` は `gpt-6-luna`、`Sol` は `gpt-6.1-sol` の略記。論文の報告区分は [tools/paper.py](../tools/paper.py) の役割名に対応する。申請書の二役は論文の最終確認人数に数えない。モデル名、役割名、実行ごとの `reviewer_id` は別物である。同じ役割でも各独立実行には別の ID を付け、設計・執筆に参加した ID を記録する。初読者と情報を持つ専門監査者を同一実行で兼任させない。
 
 ## 起動予算と引継ぎ
 
@@ -40,7 +43,24 @@ Luna が用語の意味、資料同一性、適用条件、因果、引用支持
 
 ## 初読者の隔離
 
-二つの `blind_reader` 定義だけは、リポジトリ規則・スキル・設計への読み込みを指示しない。主担当が新しい履歴のない実行を作り、中立な読者属性と、凍結した原稿の最初のまとまりだけを渡す。読み手の報告を保存してから次のまとまりを渡す。ファイルの場所を知らせる場合も、読める行・ページの範囲を明示し、全文を先に読み込ませない。
+本文やファイルの場所を渡す前に、新しい役の実行へ中立な読者属性だけを示し、
+制作ルーティング・目標・履歴・別の原稿が既に注入されていないかを確認する。
+その応答は読解checkpointとは別に保存する。漏洩が観測された実行へ本文を
+渡して盲検読者と扱わない。ただし「見えていない」という自己申告も隔離の証明では
+ない。利用できる実行診断を確認し、後で判明した漏洩は過去の判定にも反映する。
+
+二つの `blind_reader` と `undergraduate_reader` は、リポジトリ規則・スキル・設計への読み込みを指示しない。主担当が新しい履歴のない実行を作り、中立な読者属性と、凍結した原稿の最初のまとまりだけを渡す。読み手の報告を保存してから次のまとまりを渡す。ファイルの場所を知らせる場合も、読める行・ページの範囲を明示し、全文を先に読み込ませない。
+
+[blind-referee](../.agents/skills/blind-referee/SKILL.md) は明示実行の報告専用入口。
+通常の執筆は同じ [凍結・ループの補助](../tools/blind-review/READER_LOOP.md) を
+必要時に自動利用する。`undergraduate_reader` は
+[講義用 overlay](../.agents/skills/undergraduate-lecture/SKILL.md) で通常の初読者を置き換える。
+別の追加パネルではない。ループの観測JSONは論文全体の最終報告と同一形式ではなく、
+`paper.py readiness` の全役・人間・最終版の確認を飛ばす証拠にはならない。
+
+[application-interview](../.agents/skills/application-interview/SKILL.md) の担当は
+本人への質問を代行せず、限定した候補や確認結果を返す。本文の大幅編集は同じ
+`writer` の申請書モードへ渡す。論文用の設計・引用契約を自動適用しない。
 
 読者目標、期待回答、`AGENTS.md` の制作ルーティング、設計、差分、過去の読者報告、モデルを切り替えた理由は渡さない。Sol へ切り替える場合も、Luna の会話を継続しない。報告は意味の理解、本文の根拠、最初の混乱、後の回復、未読範囲の観測であり、修正文や内的思考の記録ではない。
 

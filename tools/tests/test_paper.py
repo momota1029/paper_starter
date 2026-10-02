@@ -30,7 +30,11 @@ class PaperCLI(unittest.TestCase):
         self.root = Path(self.temporary.name)
         shutil.copytree(REPOSITORY / "templates" / "project", self.root / "templates" / "project")
         shutil.copytree(REPOSITORY / ".codex", self.root / ".codex")
-        for name in ("AGENTS.md", "README.md", "index.md", "rules/INDEX.md", ".agents/skills/paper-writing/SKILL.md"):
+        for name in ("AGENTS.md", "README.md", "index.md", "rules/INDEX.md",
+                     ".agents/skills/paper-writing/SKILL.md",
+                     ".agents/skills/blind-referee/SKILL.md",
+                     ".agents/skills/undergraduate-lecture/SKILL.md",
+                     ".agents/skills/application-interview/SKILL.md"):
             self.write(name, "# Synthetic fixture\n")
         self.write("rules/quality-contract.md", "# Synthetic quality contract rule\n")
         self.write("rules/INDEX.md", "[Quality contract](quality-contract.md)\n")
@@ -40,6 +44,19 @@ class PaperCLI(unittest.TestCase):
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(body, encoding="utf-8")
         return path
+
+    def test_private_application_drafts_are_not_workspace_link_targets(self):
+        self.write(".application-local/private/draft.md", "[Private unresolved path](missing-file.md)\n")
+        self.run_cli("check")
+
+    def test_all_shipped_skill_entries_are_required(self):
+        for skill in ("blind-referee", "undergraduate-lecture", "application-interview"):
+            with self.subTest(skill=skill):
+                path = self.root / f".agents/skills/{skill}/SKILL.md"
+                body = path.read_text(encoding="utf-8")
+                path.unlink()
+                self.run_cli("check", ok=False, contains="missing")
+                self.write(str(path.relative_to(self.root)), body)
 
     def json(self, name, value):
         return self.write(name, json.dumps(value, ensure_ascii=False, indent=2) + "\n")

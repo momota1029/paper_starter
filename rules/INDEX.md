@@ -16,6 +16,7 @@
 | [review-loop](review-loop.md) | モード、修正ループ、終了条件 |
 | [reviewer-roles](reviewer-roles.md) | 独立性、割り当て、読者の情報境界 |
 | [companions](companions.md) | 忠実な翻訳と理解用ノート |
+| [prose-lecture](prose-lecture.md) | 学部水準の橋渡し、段階的な理解、講義ノートの初読確認 |
 | [workspace](workspace.md) | inbox / writing / output、索引、メタデータ |
 | [release](release.md) | 最終読解、組版、独立した提出パッケージ |
 

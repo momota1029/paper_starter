@@ -36,7 +36,12 @@ is sufficient; no activation command is needed.
    and [configured agents](../../../docs/agents.md) before delegation. Use the
    actual role definitions in `.codex/agents/`, including their model and effort.
    Translation or explanatory companions additionally use
-   [companions](../../../rules/companions.md). Delivery preparation uses
+   [companions](../../../rules/companions.md). Undergraduate-accessible research
+   notes additionally use [undergraduate-lecture](../undergraduate-lecture/SKILL.md)
+   once as an overlay, without recursively starting another pipeline. CVs and
+   grant/application interviews instead use
+   [application-interview](../application-interview/SKILL.md), not this workflow.
+   Delivery preparation uses
    [release](../../../rules/release.md).
 
 The rules are the single source of truth. Do not make competing skill-local
@@ -60,6 +65,20 @@ primary-only routing procedure. Never send this skill to a blind reader.
 - Freeze the reviewed version; actually execute the selected independent
   checks. A generated review packet is not a completed review. Collect reports
   before comparison. Adjudicate findings against the artifact and evidence.
+- When the selected plan uses native forward-reader feedback on PDF/Markdown/text,
+  automatically use
+  [reader-loop commands](../../../tools/blind-review/READER_LOOP.md) to bind the
+  fixed contract, source dependencies, original baseline, observations and adopted
+  repairs. Read that recipe before preparing the run. It calls the shared
+  blind-review preparation once; do not also prepare a duplicate pass, ask the
+  user to invoke `$blind-referee`, or require a hand-written CLI command.
+  The standalone `$blind-referee` entry remains report-only. For supported text,
+  the existing supplementary reader transport is a separately labeled option,
+  not evidence of native isolation. It retains its own checkpoint/receipt format;
+  do not feed incompatible receipts into this state machine or relabel them
+  native. On that alternate path, keep the same fixed goals, baseline, adopted
+  repair and fresh-review cycle in the existing project ledger under review-loop
+  rules. Unsupported formats or manual reviews follow those same record duties.
 - A clean specialist report still includes positive coverage of external inputs,
   attribution placement, and binding constraints, or a scoped reason why none
   apply. Reader summaries must evidence scope and conditions, not just fluency;
@@ -71,6 +90,13 @@ primary-only routing procedure. Never send this skill to a blind reader.
 - Preserve unknowns, failed checks, unread scope, and actual stop states.
   Continue useful in-scope work when a tool or decision is missing. A local
   self-read is useful but cannot replace independent review or a human read.
+- In an authorized revision task, repeat the adopted repair → affected checks →
+  fresh review cycle until the scoped convergence conditions in review-loop hold.
+  There is no default two/three-round cutoff. Explicit resource budgets and
+  missing authority, evidence, isolation or independent reviewers are unfinished
+  stop states, not permission to call the task converged. Report-only tasks never
+  acquire edit authority from this loop. Do not repeat unchanged failed inputs;
+  persistent failure returns to design, not a favorable-reader lottery.
 
 ## Close the task honestly
 

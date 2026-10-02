@@ -48,3 +48,15 @@ config_file = "agents/blind_reader_sol.toml"
 [agents.render_reviewer]
 description = "Luna: inspect actual rendered pages and report unviewed scope."
 config_file = "agents/render_reviewer.toml"
+
+[agents.undergraduate_reader]
+description = "Luna: isolated undergraduate first reader and prerequisite-barrier observations."
+config_file = "agents/undergraduate_reader.toml"
+
+[agents.application_interviewer]
+description = "Luna: bounded backstage question planning for the same-chat application interview."
+config_file = "agents/application_interviewer.toml"
+
+[agents.application_reviewer]
+description = "Luna: fresh application facts, requirements and omission check."
+config_file = "agents/application_reviewer.toml"

@@ -34,11 +34,24 @@ python3 tools/paper.py new my-paper --title '研究の題名' --profile empirica
 対応するAI環境では自然な依頼から開始できる。他の環境では `AGENTS.md` を
 入口として明示する。フォルダを置くだけで全てのAIが同じ機能を持つわけではない。
 
+## 同梱する skills
+
+| skill | 役割 |
+| --- | --- |
+| [paper-writing](.agents/skills/paper-writing/SKILL.md) | 分野に合わせた論文制作と、収束までの修正・独立確認 |
+| [blind-referee](.agents/skills/blind-referee/SKILL.md) | `$blind-referee output/example/paper.pdf` など、明示指定の報告専用初見査読 |
+| [undergraduate-lecture](.agents/skills/undergraduate-lecture/SKILL.md) | 学部水準の理解用ノート。前提知識の橋渡しと専用読者による確認 |
+| [application-interview](.agents/skills/application-interview/SKILL.md) | 同じ会話での履歴書・申請書作成、途中保存、再開 |
+
+通常の執筆・講義ノート・申請書は自然な依頼で始まる。`blind-referee` の
+独立した入口だけは原型どおり明示実行専用。通常の執筆中に必要な初読検査は、
+このコマンドを利用者が毎回指定しなくても主担当が進める。
+
 ## フォルダ
 
 ```text
 AGENTS.md                  AIの入口と共通の制約
-.agents/skills/            執筆ワークフロー
+.agents/skills/            執筆・初見査読・講義・対話型申請書
 .codex/agents/             Luna / Sol の実際のサブエージェント定義
 .codex/config.toml         サブエージェントの同時実行数
 rules/                    基本論理、文章作法、分野別検証、修正ループ
@@ -52,6 +65,8 @@ templates/                新規研究・報告書のひな型
 tools/                    管理、凍結、検査と回帰テスト
 evals/                    文章と運用の評価用素材
 docs/                     設定、品質の範囲、保守
+.paper-local/             非公開の凍結版・レビュー・読者ループ
+.application-local/       非公開の申請書下書き・聞き取り状態
 ```
 
 原稿・inbox・文献・出力・研究一覧は初期状態でGit対象外。
@@ -69,6 +84,13 @@ docs/                     設定、品質の範囲、保守
 初読者には答えや修正意図を渡さず、読み進めた時点の理解を記録する。
 直しても理解が回復しなければ設計へ戻る。変更のない再実行で合格を引く方式にはしない。
 誤字修正は軽く、新規主張や投稿直前は広く確認する。
+
+修正は宣言した範囲で収束するまで続け、既定の総ラウンド数で打ち切らない。
+[読者ループのコマンド](tools/blind-review/READER_LOOP.md) が目標・原本・観測・
+修正・次の版の対応を検査する。明示した資源上限、権限不足、資料待ち、隔離失敗は
+未完了として残す。CLI自体が自律的に執筆やモデル呼び出しをするわけではない。
+申請書の聞き取りでは本人の回答待ちで止まり、[保存状態](tools/application-interview/README.md)
+から再開する。
 
 [品質契約](rules/quality-contract.md)に、読者の既有知識、外部入力の説明、
 帰属を示す位置、近接論文への拘束力と著者が認めた例外を記す。

@@ -528,7 +528,8 @@ def agent_config_check(root):
         found.add(role["name"])
     needed = {"inventory", "designer", "writer", "correctness_reviewer", "argument_reviewer",
               "source_reviewer", "bibliography_reviewer", "structure_reviewer", "blind_reader",
-              "blind_reader_sol", "render_reviewer"}
+              "blind_reader_sol", "render_reviewer", "undergraduate_reader",
+              "application_interviewer", "application_reviewer"}
     require(needed <= found, "missing configured agent roles: " + ", ".join(sorted(needed - found)))
     registered_roles = {name for name, value in agents.items() if isinstance(value, dict)}
     require(registered_roles == found, "role registry and files disagree")
@@ -536,7 +537,11 @@ def agent_config_check(root):
 
 
 def check_workspace(root):
-    for name in ("AGENTS.md", "README.md", "index.md", "rules/INDEX.md", ".agents/skills/paper-writing/SKILL.md"):
+    for name in ("AGENTS.md", "README.md", "index.md", "rules/INDEX.md",
+                 ".agents/skills/paper-writing/SKILL.md",
+                 ".agents/skills/blind-referee/SKILL.md",
+                 ".agents/skills/undergraduate-lecture/SKILL.md",
+                 ".agents/skills/application-interview/SKILL.md"):
         require(safe(root, name).is_file(), f"missing {name}")
     required_rules = {p.name for p in (root / "rules").glob("*.md") if p.name != "INDEX.md"}
     rule_index = (root / "rules/INDEX.md").read_text(encoding="utf-8")
@@ -545,7 +550,7 @@ def check_workspace(root):
     checked = 0
     for path in root.rglob("*.md"):
         rel = path.relative_to(root)
-        if rel.parts[0] in {"writing", "inbox", "output", "refs", ".paper-local", ".git", ".venv"}:
+        if rel.parts[0] in {"writing", "inbox", "output", "refs", ".paper-local", ".application-local", ".git", ".venv"}:
             continue
         require(not path.is_symlink(), f"symlink: {rel}")
         text = path.read_text(encoding="utf-8")
