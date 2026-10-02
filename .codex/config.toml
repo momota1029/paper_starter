@@ -1,0 +1,50 @@
+# Project-scoped subagents; the primary model remains the user's selection.
+# Model and effort are explicit in each standalone .codex/agents/*.toml.
+[agents]
+enabled = true
+max_concurrent_threads_per_session = 3
+
+# Explicit registration also supports clients using the config_file role catalog.
+[agents.inventory]
+description = "Luna: bounded inventories and candidate screens; escalate meaning."
+config_file = "agents/inventory.toml"
+
+[agents.designer]
+description = "Sol: evidence-based manuscript design and coherent repair specification."
+config_file = "agents/designer.toml"
+
+[agents.writer]
+description = "Sol: the sole ordinary manuscript writer; implement accepted changes."
+config_file = "agents/writer.toml"
+
+[agents.correctness_reviewer]
+description = "Sol: independent substantive correctness and field-specific evidence."
+config_file = "agents/correctness_reviewer.toml"
+
+[agents.argument_reviewer]
+description = "Sol: basic logical writing, definitions, quantifiers, and inferential bridges."
+config_file = "agents/argument_reviewer.toml"
+
+[agents.source_reviewer]
+description = "Sol: actual source support, claim scope, and attribution."
+config_file = "agents/source_reviewer.toml"
+
+[agents.bibliography_reviewer]
+description = "Luna: citation keys, source identity, editions, and package dependencies."
+config_file = "agents/bibliography_reviewer.toml"
+
+[agents.structure_reviewer]
+description = "Sol: independent design audit, section dependencies, and prose structure."
+config_file = "agents/structure_reviewer.toml"
+
+[agents.blind_reader]
+description = "Luna: isolated fresh reader; receives only artifact prefixes and neutral background."
+config_file = "agents/blind_reader.toml"
+
+[agents.blind_reader_sol]
+description = "Sol: isolated fresh reader for demanding text; never reuse earlier reader history."
+config_file = "agents/blind_reader_sol.toml"
+
+[agents.render_reviewer]
+description = "Luna: inspect actual rendered pages and report unviewed scope."
+config_file = "agents/render_reviewer.toml"

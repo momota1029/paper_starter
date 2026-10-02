@@ -1,0 +1,232 @@
+{
+  "date": "2026-10-02",
+  "decision": "EQUIVALENCE_NOT_ESTABLISHED",
+  "evaluation_execution": "completed_with_disclosed_limits",
+  "protocol_sha256": "25b07997a75714fd6b2254ec38585a64566a70ffa8e72a16802a6e6930b5c4b2",
+  "scope": "two elementary self-contained English finite metric-measure expository articles; common controlled orchestration; not as-configured native pipeline",
+  "models": {
+    "design_write_specialists_requested": "gpt-6.1-sol",
+    "reader_requested": "gpt-6-luna",
+    "effort_requested": "high",
+    "backend_identity_observed": null,
+    "source_writer_normal_pin": "gpt-6-luna",
+    "controlled_writer_override": true
+  },
+  "variants": {
+    "R17": {
+      "arm": "doc_rules",
+      "case": "coupling",
+      "pages": 3
+    },
+    "R63": {
+      "arm": "starter_rules",
+      "case": "coupling",
+      "pages": 3
+    },
+    "R88": {
+      "arm": "doc_rules",
+      "case": "observable",
+      "pages": 3
+    },
+    "R42": {
+      "arm": "starter_rules",
+      "case": "observable",
+      "pages": 4
+    },
+    "R91": {
+      "arm": "starter_rules",
+      "case": "observable",
+      "revision_of": "R42",
+      "pages": 4
+    }
+  },
+  "artifact_hashes": [
+    {
+      "path": "evals/equivalence/artifacts/R17.tex",
+      "sha256": "6330d0167ee991eace647466522b3402855fa60f5ed43cf3ab49d6438c1d8bb0"
+    },
+    {
+      "path": "evals/equivalence/artifacts/R42.tex",
+      "sha256": "0d7ecdded210ba00e5de3f19413cd45146228674c56d8e07ed18f2254af85bdf"
+    },
+    {
+      "path": "evals/equivalence/artifacts/R63.tex",
+      "sha256": "02a908ac61be191ef36b6c50de8b1f1d58602092e2d65a5c59d21c412faf60c9"
+    },
+    {
+      "path": "evals/equivalence/artifacts/R88.tex",
+      "sha256": "ba30659ab95843bd76c2d0e91ff9a65840da78efc0729fedabdffbf255caf780"
+    },
+    {
+      "path": "evals/equivalence/artifacts/R91.tex",
+      "sha256": "5f815534567f470de98d6ce1e188d78b4ca3819a6123f7626e70ba276f952996"
+    },
+    {
+      "path": "output/equivalence-2026-10-02/R17.pdf",
+      "sha256": "6a3c9f833d2f5caa78b0e82f4437b4a506166476bfacbaafd1f0d1e247d9b713"
+    },
+    {
+      "path": "output/equivalence-2026-10-02/R42.pdf",
+      "sha256": "aacaaba3da51a5cf0684913afadea0f23b48db998b5f03d00752588df5175802"
+    },
+    {
+      "path": "output/equivalence-2026-10-02/R63.pdf",
+      "sha256": "b64dbff0a2700498c272fbda6c4016844ddb0bd07f5cc600f51b4b5ad9b18f69"
+    },
+    {
+      "path": "output/equivalence-2026-10-02/R88.pdf",
+      "sha256": "9c1409c0159ed7060230443a011998352d2be8c09e25f00ffbb6e1251f434034"
+    },
+    {
+      "path": "output/equivalence-2026-10-02/R91.pdf",
+      "sha256": "a9e92801ce14bf71d0801bcd4e667626d1d9e1abe633cc30c081f62afefedd83"
+    }
+  ],
+  "specialists": [
+    {
+      "id": "eq_blind_audit_a",
+      "order": [
+        "R42",
+        "R17",
+        "R88",
+        "R63"
+      ],
+      "scores": {
+        "R17": [
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "R42": [
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "R63": [
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "R88": [
+          4,
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      "findings": []
+    },
+    {
+      "id": "eq_blind_audit_b",
+      "order": [
+        "R63",
+        "R88",
+        "R17",
+        "R42"
+      ],
+      "scores": {
+        "R17": [
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "R42": [
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "R63": [
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "R88": [
+          4,
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      "findings": []
+    }
+  ],
+  "reader_goal_adjudication": {
+    "reviewer": "eq_reader_adjudication",
+    "by_variant": {
+      "R17": {
+        "introduction": "partial",
+        "main_proof": "partial",
+        "ending": "recovered"
+      },
+      "R42": {
+        "introduction": "partial",
+        "main_proof": "partial",
+        "ending": "recovered"
+      },
+      "R63": {
+        "introduction": "partial",
+        "main_proof": "partial",
+        "ending": "recovered"
+      },
+      "R88": {
+        "introduction": "partial",
+        "main_proof": "partial",
+        "ending": "recovered"
+      }
+    },
+    "interpretation": "record does not demonstrate every required scope/hypothesis at earlier boundary; not proof of reader or manuscript failure"
+  },
+  "gates": {
+    "specialist_absolute_floor": "met_in_both_arms",
+    "specialist_pairwise_tolerance": "met",
+    "required_reader_goals_fully_closed": false,
+    "all_genre_or_statistical_equivalence_tested": false,
+    "native_reader_isolation": "failed_in_one_attempt",
+    "supplementary_cli_readers": "executed_separately",
+    "human_read": "not_executed"
+  },
+  "repair": {
+    "finding": "RD-R42-01",
+    "severity": "minor",
+    "change": "six wording replacements, no mathematical or structural change",
+    "writer": "eq_write_starter",
+    "source_delta_verified": true,
+    "fresh_reader": "R91",
+    "local_closure": "target confusion not repeated in one fresh session; source safety verified independently",
+    "limitations": [
+      "no causal claim that wording improved comprehension",
+      "reader proof summary contained a local causal misstatement followed by correct triangle-inequality explanation",
+      "contradictory isolation label clarified before next block",
+      "original shared reader goals remain incomplete"
+    ]
+  },
+  "open_contract_findings": [
+    "C1 external-input positive coverage report",
+    "C2 conditional first-use attribution index",
+    "C3 hard corpus constraint and author departure-lock transfer"
+  ],
+  "checks": {
+    "unit_tests_passed": 35,
+    "input_rule_hashes_verified": 101,
+    "baseline_render_pages_viewed": 13,
+    "repaired_render_pages_viewed": 4,
+    "production_rules_changed": false,
+    "source_repository_changed": false,
+    "global_configuration_changed": false,
+    "external_publication_performed": false
+  }
+}

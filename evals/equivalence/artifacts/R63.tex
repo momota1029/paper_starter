@@ -1,0 +1,207 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsthm,amssymb}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\title{Transferring Lipschitz Tail Bounds by a Finite Coupling}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+A coupling of two probability weights on the same finite metric space
+describes how mass is paired between them. If all but an exceptional mass
+is paired at distance at most a given radius, every real-valued
+1-Lipschitz observable inherits a tail bound: the radius is enlarged by
+that distance and the tail probability increases by at most the
+exceptional mass. We prove this estimate directly, derive a radius--error
+tradeoff from the mean coupled distance, and use a two-point example to
+show why a small mean distance does not imply exact containment of the
+observable values in a small interval.
+\end{abstract}
+
+\section{A tail estimate on a common metric space}
+
+Suppose that two probability weights assign different masses to the same
+finite metric space. A real-valued function may be concentrated near a
+chosen center under the first weight. To transfer that information to the
+second weight, we pair the masses and control how far the pairs lie
+apart. A Lipschitz function then changes little on the close pairs; the
+remaining pairs account for an additive error in probability.
+
+Let $(X,d)$ be a nonempty finite metric space. A probability weight on
+$X$ is a function $\mu:X\to[0,1]$ with
+$\sum_{x\in X}\mu(x)=1$. For a subset $A\subseteq X$, write
+$\mu(A)=\sum_{x\in A}\mu(x)$. Let $\mu$ and $\nu$ be two such weights.
+A \emph{coupling} of $\mu$ and $\nu$ is an array
+$\pi:X\times X\to[0,\infty)$ satisfying
+\begin{equation}\label{eq:marginals}
+ \sum_{y\in X}\pi(x,y)=\mu(x)\quad(x\in X),
+ \qquad
+ \sum_{x\in X}\pi(x,y)=\nu(y)\quad(y\in X).
+\end{equation}
+Thus $\pi$ has total mass one. For $E\subseteq X\times X$, put
+$\pi(E)=\sum_{(x,y)\in E}\pi(x,y)$.
+
+A function $f:X\to\mathbb R$ is \emph{1-Lipschitz} if
+$|f(x)-f(y)|\le d(x,y)$ for all $x,y\in X$. The following theorem
+transfers a tail bound for every such function using the same coupling.
+
+\begin{theorem}\label{thm:transfer}
+Let $\pi$ be a coupling of $\mu$ and $\nu$. Suppose that $r\ge0$ and
+$0\le\eta\le1$ satisfy
+\[
+ \pi\bigl(\{(x,y)\in X\times X:d(x,y)>r\}\bigr)\le\eta.
+\]
+Then, for every 1-Lipschitz function $f:X\to\mathbb R$, every center
+$a\in\mathbb R$, and every $t\ge0$,
+\begin{equation}\label{eq:transfer}
+ \nu\bigl(\{y\in X:|f(y)-a|>t+r\}\bigr)
+ \le
+ \min\left\{1,
+ \mu\bigl(\{x\in X:|f(x)-a|>t\}\bigr)+\eta\right\}.
+\end{equation}
+\end{theorem}
+
+The two costs in \eqref{eq:transfer} have different meanings. The radius
+increment $r$ covers the change of $f$ along close pairs. The exceptional
+mass $\eta$ covers the pairs on which that change has no such bound.
+The center $a$ is an arbitrary real number; the theorem assumes no
+centering property under either weight.
+
+\section{Proof by an inclusion of events}
+
+\begin{proof}[Proof of Theorem~\ref{thm:transfer}]
+Fix $f$, $a$, and $t$ as in the theorem. If $x,y\in X$ satisfy
+$|f(x)-a|\le t$ and $d(x,y)\le r$, then
+\[
+ |f(y)-a|
+ \le |f(y)-f(x)|+|f(x)-a|
+ \le d(x,y)+t
+ \le r+t.
+\]
+Consequently, a pair whose second coordinate lies in the target tail
+must either have its first coordinate in the original tail or lie farther
+apart than $r$. In set notation,
+\begin{align*}
+ &\{(x,y)\in X\times X:|f(y)-a|>t+r\}\\
+ &\quad\subseteq
+ \{(x,y)\in X\times X:|f(x)-a|>t\}
+ \ \cup\ \{(x,y)\in X\times X:d(x,y)>r\}.
+\end{align*}
+Summing the nonnegative weights $\pi(x,y)$ over this inclusion gives
+\begin{align*}
+ \nu\bigl(\{y:|f(y)-a|>t+r\}\bigr)
+ &=\sum_{\substack{y\in X\\|f(y)-a|>t+r}}
+       \sum_{x\in X}\pi(x,y)\\
+ &\le
+ \sum_{\substack{x\in X\\|f(x)-a|>t}}
+       \sum_{y\in X}\pi(x,y)
+ +\sum_{\substack{x,y\in X\\d(x,y)>r}}\pi(x,y)\\
+ &\le \mu\bigl(\{x:|f(x)-a|>t\}\bigr)+\eta.
+\end{align*}
+The equality uses the column sums in \eqref{eq:marginals}, and the last
+inequality uses the row sums and the assumed exceptional-mass bound.
+The left side is also at most one because $\nu$ is a probability weight.
+Combining these two bounds proves \eqref{eq:transfer}.
+\end{proof}
+
+\section{Using the mean coupled distance}
+
+The exceptional-mass condition can be obtained from the mean distance of
+the pairs. For a coupling $\pi$, define
+\[
+ D=\sum_{x,y\in X}\pi(x,y)d(x,y).
+\]
+The number $D$ is finite and nonnegative. It describes an average; it
+does not bound the distance of every pair with positive coupling mass.
+
+\begin{corollary}\label{cor:mean}
+Let $\pi$ be a coupling of $\mu$ and $\nu$ with mean distance $D$.
+For every $r>0$, every 1-Lipschitz function $f:X\to\mathbb R$, every
+$a\in\mathbb R$, and every $t\ge0$,
+\begin{equation}\label{eq:mean}
+ \nu\bigl(\{y:|f(y)-a|>t+r\}\bigr)
+ \le
+ \min\left\{1,
+ \mu\bigl(\{x:|f(x)-a|>t\}\bigr)
+ +\min\{1,D/r\}\right\}.
+\end{equation}
+If $D=0$, then $\mu=\nu$.
+\end{corollary}
+
+\begin{proof}
+For $r>0$, every term in the sum over pairs at distance greater than $r$
+has $r\pi(x,y)\le d(x,y)\pi(x,y)$. Hence
+\[
+ r\,\pi\bigl(\{(x,y):d(x,y)>r\}\bigr)
+ \le \sum_{\substack{x,y\in X\\d(x,y)>r}}\pi(x,y)d(x,y)
+ \le D.
+\]
+Division by $r$ and the total mass one give an exceptional-mass bound
+$\min\{1,D/r\}$. Applying Theorem~\ref{thm:transfer} with this value of
+$\eta$ proves \eqref{eq:mean}.
+
+If $D=0$, each nonnegative summand $\pi(x,y)d(x,y)$ is zero.
+For $x\ne y$, the metric property gives $d(x,y)>0$, so $\pi(x,y)=0$.
+The coupling is therefore supported on the diagonal, and its marginals
+satisfy $\mu(x)=\pi(x,x)=\nu(x)$ for every $x\in X$.
+\end{proof}
+
+For an explicit error budget, suppose that $D>0$ and choose
+$q\in(0,1]$. Setting $r=D/q>0$ in \eqref{eq:mean} yields
+\begin{equation}\label{eq:budget}
+ \nu\bigl(\{y:|f(y)-a|>t+D/q\}\bigr)
+ \le \min\left\{1,
+ \mu\bigl(\{x:|f(x)-a|>t\}\bigr)+q\right\}.
+\end{equation}
+Thus a smaller allowed exceptional mass requires a larger radius
+increment. If the original tail has mass at most $p\in[0,1]$, the new
+tail has mass at most $\min\{1,p+q\}$. When $D=0$, the equality of
+weights gives equality of their tails at every radius, and no division
+or radius increment is needed.
+
+\section{A distant atom and the scope of the estimate}
+
+Let $X=\{0,10\}$ with the usual distance, and choose $0<\varepsilon<1$.
+Put $\mu(0)=1$, $\mu(10)=0$, and
+$\nu(0)=1-\varepsilon$, $\nu(10)=\varepsilon$.
+The row of a coupling indexed by $10$ must be zero. Its column sums
+then force the unique coupling to be
+\[
+ \pi(0,0)=1-\varepsilon,\qquad
+ \pi(0,10)=\varepsilon,\qquad
+ \pi(10,0)=\pi(10,10)=0.
+\]
+Its mean distance is $D=10\varepsilon$.
+
+For the 1-Lipschitz function $f(x)=x$, center $a=0$, and $t=0$, the
+original strict tail has mass zero. The target strict tail is
+\[
+ \nu\bigl(\{y:|f(y)|>r\}\bigr)
+ =\begin{cases}
+   \varepsilon,&0\le r<10,\\
+   0,&r\ge10.
+  \end{cases}
+\]
+For $0\le r<10$, the exceptional coupling mass is exactly
+$\varepsilon$, so Theorem~\ref{thm:transfer} with
+$\eta=\varepsilon$ is attained. In particular, a positive mean distance
+does not imply exact containment in an interval $[-r,r]$ with $r<10$.
+Even as $\varepsilon$ tends to zero and $D$ becomes arbitrarily small,
+there remains positive mass at the distant point for each
+$\varepsilon>0$. At $r=10$ the tail vanishes: the point with value $10$
+lies on the boundary and is excluded by the strict inequality.
+
+The same coupling proves the tail estimate separately for every
+1-Lipschitz observable. It carries the chosen center through the
+comparison, but supplies no guarantee that this center is a median
+under $\nu$. All pairs and all distances in the argument belong to one
+common metric space; comparison of different metric spaces would
+require additional data specifying how their points are related.
+
+\end{document}

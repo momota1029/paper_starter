@@ -1,0 +1,98 @@
+{
+  "method": "supplementary separate CLI sessions, one fresh session per artifact; three forward blocks",
+  "isolation_limit": "prompt diagnostic and no-tool event trace; not OS-level proof",
+  "records": [
+    {
+      "variant": "R17",
+      "requested_model": "gpt-6-luna",
+      "requested_effort": "high",
+      "backend_model_observed": null,
+      "observations": [
+        {
+          "block": 1,
+          "saved_at": "2026-10-02 22:30:51.153018448 +0900",
+          "report": "**Checkpoint — Variant R17**\n\n- **What I can explain:** A coupling \\(\\pi\\) records how probability mass moves from \\(\\mu\\) to \\(\\nu\\) through its row and column sums (definition). If at most \\(\\eta\\) mass moves farther than \\(r\\), then for any \\(1\\)-Lipschitz \\(f\\), the \\(\\nu\\)-tail beyond radius \\(t+r\\) from center \\(a\\) is at most the corresponding \\(\\mu\\)-tail beyond \\(t\\), plus \\(\\eta\\), capped at \\(1\\) (Theorem 1).\n- **Role of this block:** The abstract states the main comparison and its intended extensions. The introduction sets up the finite-space notation, states the theorem, and previews the paper’s sections.\n- **Promised, not yet shown:** A proof using event inclusion and the marginal identities; bounds based on mean distance, including the zero-mean case; and a two-point example illustrating the exceptional-mass term.\n- **First confusing phrase:** None so far.\n- **Unread scope:** Everything after the supplied introduction, including the proof, mean-distance results, and example."
+        },
+        {
+          "block": 2,
+          "saved_at": "2026-10-02 22:33:15.407931839 +0900",
+          "report": "**Checkpoint — proof block**\n\n- **Recovered content:** In “Proof of transfer,” if \\(|f(x)-a|\\le t\\) and \\(d(x,y)\\le r\\), the Lipschitz condition gives \\(|f(y)-a|\\le t+r\\). Thus every pair whose \\(y\\)-value lies in the target tail must have either its \\(x\\)-value in the initial tail or distance greater than \\(r\\) (event inclusion).\n- **Textual basis:** The triangle-inequality estimate and pair-set inclusion appear at the start of the proof. Summing \\(\\pi\\) over that inclusion, then using its column sums, row sums, and the exceptional-mass bound, yields the stated tail comparison. The final probability bound by \\(1\\) supplies the minimum in the theorem.\n- **Current role:** This block completes the proof of Theorem 1.\n- **Confusion/recovery:** No confusing phrase arose; the marginal-sum steps are stated explicitly.\n- **Unread scope:** The mean-distance section and two-point example announced earlier are not included in this block."
+        },
+        {
+          "block": 3,
+          "saved_at": "2026-10-02 22:35:01.684516387 +0900",
+          "report": "**Final checkpoint — manuscript complete**\n\n- **Recovered content and textual basis:** The mean-distance corollary defines \\(D=\\sum_{x,y}\\pi(x,y)d(x,y)\\) and bounds the mass at distances greater than \\(r>0\\) by \\(D/r\\), using \\(r\\) times that mass \\(\\le D\\). The proof applies the transfer theorem with exceptional mass \\(\\min\\{1,D/r\\}\\). The following remark handles \\(D=0\\): the coupling is supported on the diagonal, so the two weights agree and their same-radius tail masses are equal.\n- **Example:** On \\(X=\\{0,10\\}\\), the specified marginals force a unique coupling with mass \\(\\varepsilon\\) moving distance \\(10\\), hence \\(D=10\\varepsilon\\). For \\(0\\le r<10\\), both the final tail mass and exceptional mass are \\(\\varepsilon\\); at \\(r=10\\), both are zero, using strict tail inequalities. This illustrates that a small positive mean distance does not rule out a positively weighted long-distance pair.\n- **Confusion or recovery:** No unresolved confusing phrase arose. The example makes the distinction between a small average distance and the presence of a long-distance pair concrete.\n- **What remains unsupported by this manuscript:** The results here concern finite metric spaces and the stated coupling assumptions. The text does not establish an extension to infinite spaces or provide a separate concentration estimate to transfer; it gives a comparison between tails under two weights.\n- **What I can explain after finishing:** I can explain the finite-space tail transfer theorem, its event-inclusion proof, the mean-distance bound and zero-distance case, and the two-point example, with their stated assumptions and limitations."
+        }
+      ]
+    },
+    {
+      "variant": "R42",
+      "requested_model": "gpt-6-luna",
+      "requested_effort": "high",
+      "backend_model_observed": null,
+      "observations": [
+        {
+          "block": 1,
+          "saved_at": "2026-10-02 22:26:22.258097271 +0900",
+          "report": "**Checkpoint — Variant R42**\n\n- **What I can explain:** The paper defines oscillation as the range of a function on a nonempty subset, then defines observable diameter as the largest, over 1-Lipschitz functions, of the smallest oscillation on a set retaining at least \\(1-\\kappa\\) of the probability mass (Eq. `\\eqref{eq:definition}`). Total variation bounds how much the mass of any subset changes (Eq. `\\eqref{eq:tvdef}`).\n- **Role of this block:** It sets up and states a comparison theorem: changing the metric by at most \\(\\delta\\) and the weights by total variation at most \\(\\tau\\) gives an additive \\(\\delta\\) bound, with the comparison parameter reduced from \\(\\kappa\\) to \\(\\kappa-\\tau\\) (Theorem `\\ref{thm:comparison}`, Eq. `\\eqref{eq:comparison}`). The closing paragraph explains why the mass shift is needed.\n- **Unresolved or promised:** This block gives no proof. The abstract promises two two-point examples—one attaining the metric bound and one illustrating the need for the discarded-mass shift—but neither appears here.\n- **First confusing phrase:** None so far.\n- **Unread scope:** Nothing beyond the supplied block was provided. I have not inferred what follows."
+        },
+        {
+          "block": 2,
+          "saved_at": "2026-10-02 22:28:16.655902676 +0900",
+          "report": "**Checkpoint**\n\n- **Recovered content:** The proof derives the finite total variation formula \\(\\TV(\\mu,\\nu)=\\tfrac12\\sum_x|\\mu(x)-\\nu(x)|\\) (Eq. `\\eqref{eq:tvsum}`), then uses it to compare eligible sets. For each \\(d\\)-Lipschitz observable \\(f\\), it constructs an \\(e\\)-Lipschitz function \\(g\\) with \\(f-\\delta\\le g\\le f\\) (Eqs. `\\eqref{eq:envelope}`–`\\eqref{eq:onesided}`). This gives an oscillation error of at most \\(\\delta\\), not \\(2\\delta\\) (Eq. `\\eqref{eq:oscillation}`). A set eligible under \\(\\nu\\) at \\(\\kappa-\\tau\\) is then eligible under \\(\\mu\\) at \\(\\kappa\\); applying the bound to each \\(f\\) and taking the supremum proves the comparison theorem.\n- **Current role:** This block supplies the proof of the comparison theorem stated in the preceding block.\n- **Confusion or recovery:** “\\(d\\)-1-Lipschitz” and “\\(e\\)-1-Lipschitz” may briefly read as subtraction; the proof’s context makes clear these mean 1-Lipschitz with respect to metrics \\(d\\) and \\(e\\).\n- **Unread scope:** The two examples promised in the abstract remain unread, as does any manuscript content after this proof."
+        },
+        {
+          "block": 3,
+          "saved_at": "2026-10-02 22:30:20.283948926 +0900",
+          "report": "**Final checkpoint**\n\n- **Recovered content and textual basis:** “Reversing the comparison” applies the theorem with \\((d,\\mu)\\) and \\((e,\\nu)\\) interchanged, giving the reverse inequality with the same parameter shift (Eq. `\\eqref{eq:reverse}`). With equal weights, setting \\(\\tau=0\\) yields a same-parameter absolute bound for metric changes (Corollary `\\ref{cor:metric}`).\n- **Examples:** In “The metric error is attained,” a two-point space gives observable diameters \\(s+\\delta\\) and \\(s\\), attaining the metric bound. In “Small mass changes can cross the eligibility threshold,” moving mass \\(\\varepsilon\\) across the threshold changes the observable diameter from \\(0\\) to \\(1\\) at fixed \\(\\kappa=0.4\\). The block then checks that the shifted comparison holds with both sides equal to \\(1\\).\n- **Confusion or recovery:** The phrase “\\(d\\)-1-Lipschitz” again briefly looks like subtraction; its context identifies it as 1-Lipschitz with respect to \\(d\\), as with the corresponding phrase for \\(e\\).\n- **What I can explain after finishing:** On one nonempty finite set, observable diameter compares the largest minimal retained oscillation among 1-Lipschitz functions. Metric perturbations contribute an additive oscillation error; mass perturbations can change which subsets meet the retention threshold, so the comparison shifts the discarded-mass parameter. Equal weights remove that shift. The two-point examples illustrate sharpness of the metric bound and the fixed-parameter jump from a small mass change.\n- **What remains unsupported:** The supplied manuscript establishes these claims for finite spaces with metrics and probability weights on the same set; it does not support extensions beyond that setting. No manuscript scope remains unread."
+        }
+      ]
+    },
+    {
+      "variant": "R63",
+      "requested_model": "gpt-6-luna",
+      "requested_effort": "high",
+      "backend_model_observed": null,
+      "observations": [
+        {
+          "block": 1,
+          "saved_at": "2026-10-02 22:25:57.387788336 +0900",
+          "report": "**ISOLATION_OK** — No task-specific instructions or other manuscript material were supplied.\n\n**Checkpoint:** The block defines probability weights and a coupling as a mass assignment on pairs with the specified marginals (equation `eq:marginals`). It then proves a transfer claim: if at most \\(\\eta\\) coupled mass lies at distance greater than \\(r\\), a 1-Lipschitz function’s tail beyond \\(t+r\\) under \\(\\nu\\) is bounded by its tail beyond \\(t\\) under \\(\\mu\\), plus \\(\\eta\\), capped at 1 (Theorem `thm:transfer`, equation `eq:transfer`). The radius increment accounts for close pairs; the additive error accounts for exceptional pairs. The center is arbitrary.\n\nThe abstract promises a radius–error tradeoff using mean coupled distance and a two-point example about exact containment, but neither appears in this block. I found no phrase confusing enough to flag; the key term “coupling” is defined here.\n\n**Unread scope:** Anything after the final paragraph of “A tail estimate on a common metric space.”"
+        },
+        {
+          "block": 2,
+          "saved_at": "2026-10-02 22:28:09.644931677 +0900",
+          "report": "**Recovered content — “Proof by an inclusion of events”:** For fixed \\(f,a,t\\), if \\(|f(x)-a|\\le t\\) and \\(d(x,y)\\le r\\), the triangle inequality and the 1-Lipschitz condition give \\(|f(y)-a|\\le t+r\\). Thus the target-tail event for \\(y\\) is contained in the union of the original-tail event for \\(x\\) and the event \\(d(x,y)>r\\). Summing coupling weights over that inclusion, the marginal identities bound the target tail by the original tail plus \\(\\eta\\). Since it is also at most 1, this proves equation `eq:transfer`.\n\n**Role:** This completes the proof of Theorem `thm:transfer` from the previous block. The key event inclusion and the column- and row-sum steps are stated directly in the proof.\n\n**Confusion/recovery:** No confusion arose. The proof makes explicit why a target-tail pair must come from either an original-tail first coordinate or an exceptional-distance pair.\n\n**Unread scope:** The abstract’s promised mean-distance tradeoff and two-point example remain unread; so does any manuscript text after this proof."
+        },
+        {
+          "block": 3,
+          "saved_at": "2026-10-02 22:30:17.959575763 +0900",
+          "report": "**Recovered content and textual basis**\n\n- **Mean-distance bound:** The manuscript defines \\(D=\\sum_{x,y}\\pi(x,y)d(x,y)\\) as the average coupled distance and states that it does not bound every pair’s distance. In Corollary `cor:mean`, it bounds the exceptional mass beyond \\(r>0\\) by \\(\\min\\{1,D/r\\}\\), then applies Theorem `thm:transfer` to get equation `eq:mean`.\n- **Zero mean:** The corollary’s proof uses nonnegativity and the metric property to show that when \\(D=0\\), the coupling is supported on the diagonal, so \\(\\mu=\\nu\\).\n- **Error budget:** Setting \\(r=D/q\\) for \\(D>0\\) and \\(q\\in(0,1]\\) gives equation `eq:budget`. The text explains that a smaller allowed exceptional mass requires a larger radius increment. When \\(D=0\\), the weights and their tails agree.\n- **Distant-atom example:** In “A distant atom and the scope of the estimate,” the two-point space \\(\\{0,10\\}\\) gives a unique coupling with mean distance \\(10\\varepsilon\\). For \\(f(x)=x\\), the target has tail mass \\(\\varepsilon\\) for \\(r<10\\), despite arbitrarily small positive \\(D\\). The text also notes that at \\(r=10\\), the strict tail excludes the boundary point.\n- **Scope:** The closing paragraph says the estimate applies separately to every 1-Lipschitz observable on the common metric space. It does not ensure the chosen center is a median under \\(\\nu\\); comparing different metric spaces requires additional data relating their points.\n\n**Confusion or recovery:** No unresolved confusion. The strict inequality in the tail explains why the atom at value \\(10\\) contributes for \\(r<10\\) but not at \\(r=10\\).\n\n**What remains unsupported:** The manuscript establishes estimates for couplings on one finite metric space. It does not supply a way to compare different metric spaces, and it gives no guarantee that the transferred center is a median under the second weight.\n\n**What I can explain after finishing:** I can explain the event-inclusion proof of the tail transfer, how the mean distance bounds exceptional mass and yields a radius–error tradeoff, why zero mean forces equal weights, and how the distant-atom example shows that a small positive mean does not ensure exact containment in a smaller interval."
+        }
+      ]
+    },
+    {
+      "variant": "R88",
+      "requested_model": "gpt-6-luna",
+      "requested_effort": "high",
+      "backend_model_observed": null,
+      "observations": [
+        {
+          "block": 1,
+          "saved_at": "2026-10-02 22:30:59.238238691 +0900",
+          "report": "**Checkpoint — Variant R88**\n\n- **What I can explain:** In the Introduction, observable diameter is defined as follows: for each 1-Lipschitz real-valued function, find a subset retaining at least \\(1-\\kappa\\) of the probability mass with the smallest oscillation; then take the supremum over those functions. Total variation is defined as the largest difference in mass assigned to any subset.\n- **Main claim:** Theorem `thm:comparison` says that if two metrics differ by at most \\(\\delta\\) and two probability weights differ in total variation by at most \\(\\tau\\le\\kappa\\), then the observable diameter for \\((d,\\mu;\\kappa)\\) is at most that for \\((e,\\nu;\\kappa-\\tau)\\), plus \\(\\delta\\).\n- **Role and promised content:** The abstract and roadmap say the manuscript will prove this comparison, give a reverse comparison and a fixed-weight metric bound, and provide two-point examples concerning sharpness and a jump at unchanged \\(\\kappa\\). Those arguments and examples are not in this block.\n- **First confusing phrase:** None so far.\n- **Unread scope:** Everything after the Introduction’s roadmap, including the promised proof, consequences, and examples.\n\nNo task-specific manuscript instructions or other manuscript material were supplied beyond this block."
+        },
+        {
+          "block": 2,
+          "saved_at": "2026-10-02 22:33:22.416587843 +0900",
+          "report": "**Checkpoint — Variant R88**\n\n- **Recovered content and basis:** In “Proof of the comparison,” the manuscript derives \\(\\TV(\\mu,\\nu)=\\tfrac12\\sum_x|\\mu(x)-\\nu(x)|\\) by separating positive and negative weight differences. For the theorem, it replaces each \\(d\\)-Lipschitz function \\(f\\) with \\(g(x)=\\min_y\\{f(y)+e(x,y)\\}\\). The triangle inequality shows \\(g\\) is 1-Lipschitz for \\(e\\), and the metric error gives \\(f(x)-\\delta\\le g(x)\\le f(x)\\). Thus, on any nonempty set, \\(\\osc_A f\\le\\osc_A g+\\delta\\). The proof then takes a set retaining mass \\(1-(\\kappa-\\tau)\\) under \\(\\nu\\); the total variation bound ensures it retains at least \\(1-\\kappa\\) under \\(\\mu\\). These steps yield the stated comparison after taking the supremum over \\(f\\).\n\n- **Current role:** This block supplies the promised direct proof and the finite-set formula for total variation.\n\n- **Confusion and recovery:** The phrase “one-sided interval of length \\(\\delta\\)” is made precise by the displayed bounds \\(f-\\delta\\le g\\le f\\). No unresolved confusion so far.\n\n- **Unread scope:** The reverse comparison, fixed-weight metric bound, and two-point examples mentioned in the previous block have not been supplied yet."
+        },
+        {
+          "block": 3,
+          "saved_at": "2026-10-02 22:35:13.492493754 +0900",
+          "report": "**Checkpoint — Variant R88**\n\n- **Recovered content and textual basis:** The “Consequences” section applies the comparison theorem in both directions. Each direction compares observable diameters with the right-hand discarded-mass parameter reduced by \\(\\tau\\). Its fixed-weight corollary sets \\(\\tau=0\\) and applies the theorem with the metrics exchanged, giving an absolute difference bound of \\(\\delta\\).\n\n  In “Two-point examples,” Example `ex:metric` shows equality in that bound: when both points have weight \\(1/2\\) and \\(\\kappa<1/2\\), only the full set meets the retained-mass threshold, so the observable diameters equal the respective point distances \\(s+\\delta\\) and \\(s\\).\n\n  Example `ex:mass` uses weights \\((0.6,0.4)\\) and \\((0.6-\\varepsilon,0.4+\\varepsilon)\\) at \\(\\kappa=0.4\\). Their total variation distance is \\(\\varepsilon\\), yet the observable diameters are \\(0\\) and \\(1\\): the first weight permits retaining the singleton \\(\\{a\\}\\), while the perturbed weight requires the full set. At the shifted parameter \\(0.4-\\varepsilon\\), the observable diameter under \\(\\mu\\) is \\(1\\), matching the bound in the reverse comparison.\n\n- **Confusion or recovery:** The earlier phrase “one-sided interval of length \\(\\delta\\)” was clarified in the proof by \\(f-\\delta\\le g\\le f\\). The final block’s mass example makes concrete why the comparison shifts the parameter: a small weight change can move a singleton across the eligibility threshold.\n\n- **What remains unsupported:** The results presented concern finite sets, and the mass example demonstrates a jump in its specified two-point setting. The block does not establish a general same-parameter bound for changing weights.\n\n- **What I can explain after finishing:** The manuscript defines observable diameter and total variation, proves a comparison under simultaneous metric and weight perturbations, derives the fixed-weight metric bound, and illustrates metric sharpness and a mass-threshold jump with two-point examples."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "run_id": "",
+  "role": "argument",
+  "reviewer_id": "",
+  "kind": "ai",
+  "independent": false,
+  "verdict": "pending",
+  "scope": "",
+  "unread": [],
+  "evidence": "",
+  "findings": [],
+  "coverage": {},
+  "reader_goals_met": false,
+  "isolation": "unverified",
+  "checkpoints": []
+}

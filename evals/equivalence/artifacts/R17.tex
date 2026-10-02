@@ -1,0 +1,108 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsthm,amssymb,mathtools}
+\usepackage{cleveref}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\title{Concentration transfer from a finite coupling}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We prove a tail comparison for real Lipschitz functions on a finite metric space equipped with two probability weights. A coupling that moves mass within a prescribed distance, apart from an exceptional mass, gives a radius increment and an additive tail error. A mean-distance bound gives a family of such comparisons. A two-point example shows why the exceptional mass is necessary.
+\end{abstract}
+
+\section{Introduction}
+
+A concentration estimate bounds the probability that a real-valued function lies far from a chosen center. To transfer such an estimate between two probability weights, we must control both how far mass moves and how much mass moves farther than the prescribed distance.
+
+Let $X$ be a nonempty finite set with a metric $d$. A probability weight $\mu$ on $X$ assigns numbers $\mu(x)\geq0$ to $x\in X$ with $\sum_{x\in X}\mu(x)=1$. For $A\subseteq X$, write $\mu(A)\coloneqq\sum_{x\in A}\mu(x)$. Let $\mu$ and $\nu$ be two probability weights on $X$.
+
+\begin{definition}
+A \emph{coupling} of $\mu$ and $\nu$ is a function $\pi\colon X\times X\to[0,\infty)$ such that
+\[ \sum_{y\in X}\pi(x,y)=\mu(x)\quad(x\in X),\qquad \sum_{x\in X}\pi(x,y)=\nu(y)\quad(y\in X). \]
+\end{definition}
+
+The row sums describe the initial weight, and the column sums describe the final weight. A function $f\colon X\to\mathbb R$ is \emph{$1$-Lipschitz} if $|f(x)-f(y)|\leq d(x,y)$ for all $x,y\in X$. For $r\geq0$, a pair at distance at most $r$ has function values differing by at most $r$. The mass of the remaining pairs supplies the tail error in the following theorem.
+
+\begin{theorem}\label{thm:transfer}
+Let $\pi$ be a coupling of $\mu$ and $\nu$. Suppose that $r\geq0$ and $0\leq\eta\leq1$ satisfy
+\[ \sum_{\substack{x,y\in X\\d(x,y)>r}}\pi(x,y)\leq\eta. \]
+Then, for every $1$-Lipschitz function $f\colon X\to\mathbb R$, every $a\in\mathbb R$, and every $t\geq0$, we have
+\[ \nu(\{y\in X\mid |f(y)-a|>t+r\})\leq\min\{1,\mu(\{x\in X\mid |f(x)-a|>t\})+\eta\}. \]
+\end{theorem}
+
+The center $a$ is retained in the comparison. \Cref{sec:proof} proves \Cref{thm:transfer} by an inclusion of events and the two marginal identities. In \Cref{sec:mean}, we derive the radius and error bounds from the mean distance and treat zero mean distance. \Cref{sec:example} gives a two-point example in which a small amount of mass moves a fixed distance.
+
+\section{Proof of transfer}\label{sec:proof}
+
+We compare the target tail with the initial tail and the pairs whose distance exceeds $r$.
+
+\begin{proof}[Proof of \Cref{thm:transfer}]
+Fix $f$, $a$, and $t$ as in the statement. If $x,y\in X$ satisfy $|f(x)-a|\leq t$ and $d(x,y)\leq r$, then
+\[ |f(y)-a|\leq |f(y)-f(x)|+|f(x)-a|\leq d(x,y)+t\leq t+r. \]
+Therefore,
+\begin{align*}
+\{(x,y)\in X\times X\mid |f(y)-a|>t+r\}
+&\subseteq\{(x,y)\in X\times X\mid |f(x)-a|>t\}\\
+&\qquad\cup\{(x,y)\in X\times X\mid d(x,y)>r\}.
+\end{align*}
+Summing $\pi$ over this inclusion gives
+\begin{align*}
+\nu(\{y\in X\mid |f(y)-a|>t+r\})
+&=\sum_{\substack{y\in X\\|f(y)-a|>t+r}}\sum_{x\in X}\pi(x,y)\\
+&\leq\sum_{\substack{x\in X\\|f(x)-a|>t}}\sum_{y\in X}\pi(x,y)+\sum_{\substack{x,y\in X\\d(x,y)>r}}\pi(x,y)\\
+&\leq\mu(\{x\in X\mid |f(x)-a|>t\})+\eta.
+\end{align*}
+The first equality uses the column sums of $\pi$, and the last inequality uses its row sums and the assumed exceptional-mass bound. The left side is at most $1$ because $\nu$ is a probability weight. This completes the proof.
+\end{proof}
+
+\section{Mean-distance consequence}\label{sec:mean}
+
+For a coupling $\pi$, define its \emph{mean distance} by
+\[ D\coloneqq\sum_{x,y\in X}\pi(x,y)d(x,y). \]
+A bound on $D$ controls the mass of pairs whose distance exceeds any positive radius.
+
+\begin{corollary}\label{cor:mean}
+Let $\pi$ be a coupling of $\mu$ and $\nu$ with mean distance $D$. For every $r>0$, every $1$-Lipschitz function $f\colon X\to\mathbb R$, every $a\in\mathbb R$, and every $t\geq0$, we have
+\[ \nu(\{y\in X\mid |f(y)-a|>t+r\})\leq\min\{1,\mu(\{x\in X\mid |f(x)-a|>t\})+D/r\}. \]
+\end{corollary}
+\begin{proof}
+For $r>0$, nonnegativity of all summands gives
+\[ r\sum_{\substack{x,y\in X\\d(x,y)>r}}\pi(x,y)\leq\sum_{\substack{x,y\in X\\d(x,y)>r}}\pi(x,y)d(x,y)\leq D. \]
+Also, $\sum_{x,y\in X}\pi(x,y)=\sum_{x\in X}\mu(x)=1$. The exceptional mass is thus at most $\min\{1,D/r\}$. Apply \Cref{thm:transfer} with $\eta=\min\{1,D/r\}$. If $D/r\leq1$, this gives the stated bound directly. If $D/r>1$, the stated right side is $1$, which bounds every $\nu$-mass. This completes the proof.
+\end{proof}
+
+Increasing $r$ enlarges the interval around $a$ while decreasing the error bound $D/r$.
+
+\begin{remark}\label{rem:zero}
+If $D=0$, every summand $\pi(x,y)d(x,y)$ is zero. Since $d(x,y)>0$ whenever $x\neq y$, we have $\pi(x,y)=0$ off the diagonal. The marginal identities then give $\mu(x)=\pi(x,x)=\nu(x)$ for every $x\in X$. In this case the two tail masses at the same radius are equal, and \Cref{thm:transfer} applies with $r=\eta=0$.
+\end{remark}
+
+\section{A two-point limitation}\label{sec:example}
+
+The following example separates a mean-distance bound from a bound holding for every pair with positive coupled mass.
+
+\begin{example}
+Let $X=\{0,10\}$ with $d(x,y)=|x-y|$, and fix $0<\varepsilon<1$. Set
+\[ \mu(0)=1,\quad \mu(10)=0,\qquad \nu(0)=1-\varepsilon,\quad \nu(10)=\varepsilon. \]
+Any coupling has a zero row at $10$, because its entries are nonnegative and that row sums to zero. The column sums determine the remaining entries. Thus the unique coupling is
+\[ \pi(0,0)=1-\varepsilon,\quad \pi(0,10)=\varepsilon,\quad \pi(10,0)=\pi(10,10)=0, \]
+and its mean distance is $D=10\varepsilon$.
+
+The function $f\colon X\to\mathbb R$ defined by $f(x)=x$ is $1$-Lipschitz. At $a=t=0$, the initial tail has mass zero. For every $0\leq r<10$, we have
+\[ \nu(\{y\in X\mid |f(y)|>r\})=\varepsilon,\qquad \sum_{\substack{x,y\in X\\d(x,y)>r}}\pi(x,y)=\varepsilon. \]
+Thus \Cref{thm:transfer} is attained with $\eta=\varepsilon$. At $r=10$, both displayed masses are zero because the inequalities defining the tails are strict.
+
+As $\varepsilon\downarrow0$, the mean distance $10\varepsilon$ tends to zero, but a pair at distance $10$ continues to carry positive mass for each $\varepsilon>0$. Thus an arbitrarily small positive mean distance does not place all final mass in any interval $[-r,r]$ with $0\leq r<10$. The mass outside that interval is exactly the exceptional mass $\varepsilon$.
+\end{example}
+
+\end{document}

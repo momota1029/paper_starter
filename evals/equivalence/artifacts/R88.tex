@@ -1,0 +1,133 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsthm,amssymb,mathtools}
+\usepackage{cleveref}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\DeclareMathOperator{\ObsDiam}{ObsDiam}
+\DeclareMathOperator{\TV}{TV}
+\DeclareMathOperator{\osc}{osc}
+\title{Observable diameter under metric and mass perturbation}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We compare observable diameters on a finite set when both the metric and the probability weight change. A uniform error in the metric contributes the same additive error to observable diameter. An error in mass is accommodated by decreasing the discarded-mass parameter. We prove the comparison directly and give two-point examples showing sharpness of the metric bound and a discontinuity at a fixed mass threshold.
+\end{abstract}
+
+\section{Introduction}
+
+Observable diameter measures the variation of real Lipschitz functions after a prescribed amount of mass may be discarded. For each function, we choose a set of sufficient mass on which its variation is smallest. We then take the supremum over all such functions. Changes in the metric affect the admissible functions, while changes in the probability weight affect the admissible sets.
+
+Let $X$ be a nonempty finite set. A probability weight $\mu$ on $X$ consists of numbers $\mu(x)\geq0$ with $\sum_{x\in X}\mu(x)=1$. For $A\subseteq X$, write $\mu(A)\coloneqq\sum_{x\in A}\mu(x)$. Given a metric $d$ on $X$, a function $f\colon X\to\mathbb R$ is \emph{$1$-Lipschitz} for $d$ if $|f(x)-f(y)|\leq d(x,y)$ for all $x,y\in X$. For a nonempty subset $A\subseteq X$, its \emph{oscillation} is
+\[ \osc_A f\coloneqq\max_{x\in A}f(x)-\min_{x\in A}f(x). \]
+
+\begin{definition}
+For a metric $d$ and a probability weight $\mu$ on $X$, and for $0\leq\kappa<1$, the \emph{observable diameter} is defined by
+\[ \ObsDiam(X,d,\mu;\kappa)\coloneqq\sup_f\min\{\osc_A f\mid A\subseteq X,\ \mu(A)\geq1-\kappa\}, \]
+where $f$ runs over all $1$-Lipschitz functions $X\to\mathbb R$ for $d$.
+\end{definition}
+
+Here $\kappa$ is the allowed discarded mass. Every eligible set is nonempty, because $1-\kappa>0$, and $X$ is always eligible. The minimum exists because there are finitely many subsets of $X$. The supremum is finite, since every admissible oscillation is at most $\max_{x,y\in X}d(x,y)$.
+
+\begin{definition}
+For probability weights $\mu$ and $\nu$ on $X$, their \emph{total variation distance} is
+\[ \TV(\mu,\nu)\coloneqq\max_{A\subseteq X}|\mu(A)-\nu(A)|. \]
+\end{definition}
+
+A metric perturbation will add a distance error. To accommodate a mass error, we require extra retained mass on the comparison side.
+
+\begin{theorem}\label{thm:comparison}
+Let $d$ and $e$ be metrics on $X$, and let $\mu$ and $\nu$ be probability weights on $X$. Suppose that $\delta\geq0$ and $0\leq\tau\leq\kappa<1$ satisfy
+\[ |d(x,y)-e(x,y)|\leq\delta\quad(x,y\in X),\qquad \TV(\mu,\nu)\leq\tau. \]
+Then
+\[ \ObsDiam(X,d,\mu;\kappa)\leq\ObsDiam(X,e,\nu;\kappa-\tau)+\delta. \]
+\end{theorem}
+
+\Cref{sec:proof} proves the comparison by replacing a function Lipschitz for $d$ with one Lipschitz for $e$ and transferring the retained-mass condition. \Cref{sec:consequences} gives the reverse comparison and the absolute metric bound for a fixed probability weight. In \Cref{sec:examples}, two-point examples attain the metric bound and exhibit a jump under a mass perturbation at unchanged $\kappa$.
+
+\section{Proof of the comparison}\label{sec:proof}
+
+We first express total variation in terms of the individual weights. For $x\in X$, put $h(x)\coloneqq\mu(x)-\nu(x)$, and let $P\coloneqq\{x\in X\mid h(x)>0\}$. Since $\sum_{x\in X}h(x)=0$, the number $S\coloneqq\sum_{x\in P}h(x)$ satisfies
+\[ S=-\sum_{x\in X\setminus P}h(x)=\frac12\sum_{x\in X}|h(x)|. \]
+For every $A\subseteq X$, its positive terms sum to at most $S$ and its negative terms sum to at least $-S$. Therefore $|\sum_{x\in A}h(x)|\leq S$. Equality holds for $A=P$, including when $S=0$. This proves
+\[ \TV(\mu,\nu)=\frac12\sum_{x\in X}|\mu(x)-\nu(x)|. \]
+
+The proof of \Cref{thm:comparison} uses a replacement function whose error lies in a one-sided interval of length $\delta$.
+
+\begin{proof}[Proof of \Cref{thm:comparison}]
+Let $f\colon X\to\mathbb R$ be any $1$-Lipschitz function for $d$. Define $g\colon X\to\mathbb R$ by
+\[ g(x)\coloneqq\min_{y\in X}\{f(y)+e(x,y)\}\quad(x\in X). \]
+This minimum exists because $X$ is finite and nonempty. We prove that $g$ is $1$-Lipschitz for $e$. Fix $x,z\in X$, and choose $y_z\in X$ attaining the minimum defining $g(z)$. By the triangle inequality for $e$,
+\[ g(x)\leq f(y_z)+e(x,y_z)\leq f(y_z)+e(z,y_z)+e(x,z)=g(z)+e(x,z). \]
+Exchanging $x$ and $z$ gives $|g(x)-g(z)|\leq e(x,z)$.
+
+Taking $y=x$ in the definition gives $g(x)\leq f(x)$. For every $x,y\in X$, the Lipschitz condition for $f$ and the metric comparison give
+\[ f(y)+e(x,y)\geq f(x)-d(x,y)+e(x,y)\geq f(x)-\delta. \]
+Taking the minimum over $y\in X$ yields $f(x)-\delta\leq g(x)\leq f(x)$ for all $x\in X$. Thus, for every nonempty $A\subseteq X$,
+\[ \max_{x\in A}f(x)\leq\max_{x\in A}g(x)+\delta,\qquad \min_{x\in A}f(x)\geq\min_{x\in A}g(x), \]
+and hence $\osc_A f\leq\osc_A g+\delta$.
+
+Choose $A\subseteq X$ attaining the minimum for $g$ under $\nu$ at the parameter $\kappa-\tau$. Such a set exists by finiteness, and it is nonempty because $0\leq\kappa-\tau<1$. Its mass satisfies
+\[ \mu(A)\geq\nu(A)-\tau\geq1-(\kappa-\tau)-\tau=1-\kappa. \]
+It is therefore eligible for the minimum under $\mu$ at $\kappa$. We obtain
+\begin{align*}
+\min\{\osc_B f\mid B\subseteq X,\ \mu(B)\geq1-\kappa\}
+&\leq\osc_A f\\
+&\leq\osc_A g+\delta\\
+&\leq\ObsDiam(X,e,\nu;\kappa-\tau)+\delta.
+\end{align*}
+The last inequality uses both the minimizing choice of $A$ and the fact that $g$ is $1$-Lipschitz for $e$. This bound holds for every admissible $f$. Taking the supremum over $f$ proves the assertion. This completes the proof.
+\end{proof}
+
+\section{Consequences}\label{sec:consequences}
+
+The hypotheses of \Cref{thm:comparison} are symmetric in the two metric and weight pairs. Applying it with $(d,\mu)$ and $(e,\nu)$ exchanged gives
+\[ \ObsDiam(X,e,\nu;\kappa)\leq\ObsDiam(X,d,\mu;\kappa-\tau)+\delta. \]
+Both directions retain a shifted parameter on the right.
+
+For a fixed weight the mass error is zero, giving the following bound.
+
+\begin{corollary}\label{cor:metric}
+Let $d$ and $e$ be metrics on $X$, and let $\mu$ be a probability weight on $X$. If $\delta\geq0$ satisfies $|d(x,y)-e(x,y)|\leq\delta$ for every $x,y\in X$, then, for every $0\leq\kappa<1$,
+\[ |\ObsDiam(X,d,\mu;\kappa)-\ObsDiam(X,e,\mu;\kappa)|\leq\delta. \]
+\end{corollary}
+\begin{proof}
+Since $\TV(\mu,\mu)=0$, \Cref{thm:comparison} with $\nu=\mu$ and $\tau=0$ bounds the first observable diameter by the second plus $\delta$. Its application with $d$ and $e$ exchanged bounds the second by the first plus $\delta$. The two inequalities give the absolute bound. This completes the proof.
+\end{proof}
+
+\section{Two-point examples}\label{sec:examples}
+
+The metric bound is attained on two points. The same setting also shows why a change in mass requires a change in the discarded-mass parameter.
+
+\begin{example}\label{ex:metric}
+Let $X=\{a,b\}$, fix $s>0$ and $\delta\geq0$, and give both points weight $1/2$ under $\mu$. Define metrics by $d(a,b)=s+\delta$ and $e(a,b)=s$, with zero diagonal values and symmetry. For $0\leq\kappa<1/2$, an eligible subset must have mass at least $1-\kappa>1/2$. Thus its only possible value is $X$.
+
+Every function $f\colon X\to\mathbb R$ that is $1$-Lipschitz for $d$ satisfies $\osc_X f=|f(a)-f(b)|\leq s+\delta$. Equality is attained by $f(a)=0$ and $f(b)=s+\delta$. Under $e$, the upper bound is $s$ and is attained by the function with values $0$ and $s$. Therefore
+\[ \ObsDiam(X,d,\mu;\kappa)=s+\delta,\qquad \ObsDiam(X,e,\mu;\kappa)=s. \]
+Their difference equals $\delta$, as allowed by \Cref{cor:metric}.
+\end{example}
+
+\begin{example}\label{ex:mass}
+Let $X=\{a,b\}$ with $d(a,b)=1$, and set $\kappa=0.4$. For $0<\varepsilon<0.1$, define probability weights by
+\[ \mu(a)=0.6,\quad\mu(b)=0.4,\qquad \nu_\varepsilon(a)=0.6-\varepsilon,\quad\nu_\varepsilon(b)=0.4+\varepsilon. \]
+The half-sum formula proved in \Cref{sec:proof} gives $\TV(\mu,\nu_\varepsilon)=\varepsilon$.
+
+The required retained mass is $0.6$. Under $\mu$, the singleton $\{a\}$ is eligible because its mass equals this threshold. Every function has oscillation zero there. Since oscillations are nonnegative, $\ObsDiam(X,d,\mu;0.4)=0$.
+
+Under $\nu_\varepsilon$, both singleton masses are strictly less than $0.6$: the first is $0.6-\varepsilon$, and the second is less than $0.5$. Only $X$ is eligible. Every $1$-Lipschitz function has oscillation at most $1$ on $X$, and the function taking values $0$ at $a$ and $1$ at $b$ attains that bound. Thus
+\[ \ObsDiam(X,d,\nu_\varepsilon;0.4)=1. \]
+As $\varepsilon\downarrow0$, the total variation distance tends to zero while the difference of the observable diameters at $\kappa=0.4$ remains $1$.
+
+At the shifted parameter $0.4-\varepsilon$ under $\mu$, the retained-mass threshold is $0.6+\varepsilon$. Neither singleton is eligible, so $\ObsDiam(X,d,\mu;0.4-\varepsilon)=1$. The reverse comparison from \Cref{sec:consequences}, with $e=d$, $\nu=\nu_\varepsilon$, $\delta=0$, and $\tau=\varepsilon\leq0.4$, gives exactly
+\[ \ObsDiam(X,d,\nu_\varepsilon;0.4)\leq\ObsDiam(X,d,\mu;0.4-\varepsilon)=1. \]
+The extra retained mass on the right accommodates the jump at the unchanged parameter.
+\end{example}
+
+\end{document}

@@ -1,0 +1,72 @@
+{
+  "method": "supplementary-cli-text",
+  "requested_model": "gpt-6-luna",
+  "requested_effort": "high",
+  "status": "process-checked",
+  "isolation": "not-proven",
+  "artifact": "artifacts/E.md",
+  "artifact_sha256": "c8679fe550369be059a483b41368670ec987cf79c6769230425fdf85635245bd",
+  "reviewer_id": "01a0fcf2-ef34-7d70-8b18-470d3e7fd4da",
+  "checkpoints": [
+    {
+      "at": "2026-10-02T14:11:16.713163+00:00",
+      "location": "lines 1-8",
+      "observation": {
+        "context": "absent",
+        "extra_context": [],
+        "understanding": {
+          "scope": "The text describes a comparison of end-of-session success in 20 sessions at one facility during one week. Participants chose either short explanation S or regular explanation R; there were 10 sessions in each group. Success is defined as answering all four questions correctly. The comparison concerns these recorded sessions.",
+          "conditions": "The groups were formed by participants’ choices, not random assignment. The reported fractions use 10 sessions per version. No further assumptions or details about participants, sessions, or measurement are supplied.",
+          "claim": "Seven of 10 S sessions succeeded (70%), compared with four of 10 R sessions (40%), a difference of 30 percentage points. The text says this describes the records and does not establish an effect of changing explanation length or whether the difference would recur elsewhere or at another time.",
+          "support": "The counts and group sizes are stated in the text. The percentages and 30 percentage point difference follow directly from those figures. This supports the descriptive comparison for the recorded sessions; it does not support a causal or broader population conclusion.",
+          "mechanism": "No mechanism explaining why the groups differed is proposed. The argument is a direct comparison of the two success fractions. Its steps are supported by the reported counts and group sizes, with the difference obtained arithmetically.",
+          "limitations": "The sessions were not randomly assigned, came from a single facility, and were recorded during one week. The text explicitly limits the result to these records and the specified success criterion, and disclaims causal and cross-setting or cross-time conclusions.",
+          "uncertainty": "The text does not provide participant characteristics, how many distinct participants contributed sessions, details of the questions or explanation versions, or uncertainty estimates. It does not say why participants chose a version. These matters cannot be determined from the supplied block.",
+          "confusion": "No substantial confusion arose in the supplied text. The comparison is clear given the stated group sizes, counts, and success definition. No later recovery was needed.",
+          "unread": "The supplied manuscript block has been read. The prompt says more manuscript text remains unread; its contents and whether it add details or alter this account are unavailable."
+        }
+      },
+      "block_sha256": "99f54bf168dd641f2763344b2b49016d86ae31bbb8bcef808469757bdefeaa59"
+    },
+    {
+      "at": "2026-10-02T14:12:02.887842+00:00",
+      "location": "lines 9-16",
+      "observation": {
+        "context": "absent",
+        "extra_context": [],
+        "understanding": {
+          "scope": "The supplied method section describes 20 session records, with one record per session, comparing selected group S with reference group R on the same end-of-session success outcome. Retaining the prior checkpoint: the overview reports 10 sessions per group, with 7 successes in S and 4 in R, at one facility during one week.",
+          "conditions": "There are no duplicate or missing values, and no sessions were excluded. The observation unit is the session; the text does not establish a sample of distinct people. Success means all four answers correct, with every other result counted as non-success. The method requires a common success definition and one record per session; the text says both hold. It does not require or provide random assignment or adjustment for participant differences.",
+          "claim": "The grouped completion contrast is +30 percentage points for S relative to R: 100 × (7/10 − 4/10). It describes the difference between these recorded groups. It does not establish that explanation length caused the difference, and the analysis says nothing about retention or later performance.",
+          "support": "The overview states the group sizes and success counts; the method gives the fraction and contrast formulas. The arithmetic supports 70% for S, 40% for R, and a 30 percentage point contrast. The method section states that its two requirements are met by the records. These support the descriptive result; they do not support a causal interpretation.",
+          "mechanism": "The argument counts successful sessions within each group, divides each count by that group’s number of sessions, then subtracts R’s fraction from S’s and expresses the result in percentage points. The shared outcome definition and one record per session support using these fractions for the recorded groups. The text says this calculation does not separate explanation length from other possible reasons for the difference.",
+          "limitations": "Participants chose their version, and their reasons and prior knowledge were not measured. These features could differ between groups and relate to the outcome. The records concern sessions at one facility during one week, with no follow-up. The observation unit is the session, not an independently established sample of distinct people. The analysis does not identify an effect or describe retention or later performance.",
+          "uncertainty": "The text does not provide the participants’ reasons for choosing a version, their prior knowledge, or follow-up outcomes. It does not establish how many distinct people contributed the sessions. The name, definition, requirements, and formula are attributed to M, §1, Definition A, but that source is unavailable here; its content beyond what this section states cannot be checked.",
+          "confusion": "The named method, “grouped completion contrast,” is initially unfamiliar given the stated reader background. The section supplies an operational definition, requirements, and formula, which make its use in this comparison understandable. The cited source’s provenance and any additional content remain unavailable. No other confusion or later recovery is indicated by the supplied text.",
+          "unread": "The supplied Method section and the previous Overview block have been read. The prompt says more manuscript text remains unread; its content is unavailable."
+        }
+      },
+      "block_sha256": "a5782116ca8fe1ca93e4e401856dec16ea02c54e274f1b597a19563f337e33b3"
+    },
+    {
+      "at": "2026-10-02T14:12:35.484467+00:00",
+      "location": "lines 17-21",
+      "observation": {
+        "context": "absent",
+        "extra_context": [],
+        "understanding": {
+          "scope": "The Findings section compares immediate end-of-session success in the 20 recorded sessions at one facility during one week. Retaining the earlier sections: participants selected S or R, with 10 sessions per group; success meant answering all four questions correctly; each session contributed one record.",
+          "conditions": "The reported fractions are 7/10 for S and 4/10 for R. The remaining records are three non-successes for S and six for R. The contrast is S’s success fraction minus R’s, expressed in percentage points. The groups were self-selected, and the observation unit is the session; the text does not establish a sample of distinct people.",
+          "claim": "S had a 30 percentage point higher success fraction than R in these records. This is an absolute difference in immediate recorded outcomes, not an improvement caused by shortening the explanation. The finding is limited to these 20 sessions and supports no conclusion about statistical significance, causation, or learners as a population.",
+          "support": "The section states both fractions and calculates 100 × (0.70 − 0.40) = 30 percentage points. The arithmetic supports the reported descriptive difference. The earlier overview and method supply the group sizes, counts, outcome definition, and contrast formula; the conclusion is supported for these records only.",
+          "mechanism": "The analysis divides successful sessions by recorded sessions in each group, then subtracts R’s fraction from S’s. This produces 30 percentage points. The records support this calculation, but participant choice, unmeasured reasons for that choice, and unmeasured prior knowledge mean it does not isolate an explanation-length effect. The finding may motivate a separate study, but no explanation or persistence is established here.",
+          "limitations": "The finding concerns one facility, 20 sessions, and one week, and measures immediate outcomes. Participants selected their version; their reasons and prior knowledge were not measured. No follow-up was recorded. The text explicitly provides no statistical significance conclusion, causal estimate, or population generalization.",
+          "uncertainty": "Why the groups’ fractions differ and whether any difference would persist are unresolved. The text does not establish the number of distinct participants or provide follow-up results. The cited source M, §1, Definition A, mentioned in the method section, was not supplied, so its content beyond the method section’s description is unavailable.",
+          "confusion": "The method name was initially unfamiliar, but the earlier method section’s formula and requirements clarified how the contrast is calculated. No confusion remains about the reported arithmetic. The cited source itself remains unavailable.",
+          "unread": "This is identified as the final manuscript block. The Overview, Method, and Findings blocks supplied in the conversation have now been read; no further manuscript text is indicated as unread."
+        }
+      },
+      "block_sha256": "bf9748717554054d6b4c382ff9b1aadb4408f71824ee6decca118a7201b9fc84"
+    }
+  ]
+}

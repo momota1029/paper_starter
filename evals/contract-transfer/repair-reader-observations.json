@@ -1,0 +1,72 @@
+{
+  "method": "supplementary-cli-text",
+  "requested_model": "gpt-6-luna",
+  "requested_effort": "high",
+  "status": "process-checked",
+  "isolation": "not-proven",
+  "artifact": "artifacts/E-v2.md",
+  "artifact_sha256": "623237dcb7256a5bfa62079f7112097af0c83fa41f576e52369ba38aebcf4eff",
+  "reviewer_id": "01a0fcfa-45fc-7a02-89a7-7f0b02d52079",
+  "checkpoints": [
+    {
+      "at": "2026-10-02T14:19:23.016161+00:00",
+      "location": "lines 1-8",
+      "observation": {
+        "context": "absent",
+        "extra_context": [],
+        "understanding": {
+          "scope": "This is a fictional descriptive comparison using synthetic records from 20 sessions at one facility during one week. Participants chose either the short explanation (S) or regular explanation (R); there were 10 sessions per version. The outcome is session-level success at the end of the session, defined as answering all four questions correctly.",
+          "conditions": "The comparison is between the recorded groups, with 10 sessions in each. Participants were not randomly assigned: they chose their explanation version. The stated scope is limited to these sessions, facility, week, and success criterion.",
+          "claim": "Seven of 10 S sessions and four of 10 R sessions met the success criterion. The recorded success fractions differed by 30 percentage points. The text says this does not establish that changing explanation length would improve performance or that the difference would recur elsewhere or at another time.",
+          "support": "The counts and group sizes are stated in the text. They support success fractions of 70% for S and 40% for R, whose difference is 30 percentage points. The arithmetic supports the descriptive comparison; the text provides no further session-level records or analysis.",
+          "mechanism": "No causal mechanism is established. The text says participants chose their version and were not randomly assigned, so the comparison describes the recorded groups rather than identifying an effect of explanation length. It does not explain why the groups differed.",
+          "limitations": "The example is explicitly fictional and synthetic. It covers only 20 sessions at one facility during one week, and the groups were self-selected. The outcome is restricted to answering all four questions correctly at session end. The text cautions against causal and broader generalization claims.",
+          "uncertainty": "No information is given about how participants chose, participant characteristics, how sessions were conducted beyond the stated criterion, or any other factors that might distinguish the groups. No uncertainty estimates or additional outcomes are supplied. No named method appears in this block.",
+          "confusion": "I had no initial confusion in this overview. The 30 percentage-point difference follows from 70% minus 40%; the self-selection statement clarifies that this is descriptive rather than evidence of an effect.",
+          "unread": "The supplied block contains the title and Overview only. More manuscript text remains unread, so its later arguments, evidence, and conclusions are unavailable."
+        }
+      },
+      "block_sha256": "a9bf8cdc2ff67bce67a68fa967f30398d62f7fd6e1a6acaf4ab47494b395d963"
+    },
+    {
+      "at": "2026-10-02T14:20:05.249196+00:00",
+      "location": "lines 9-16",
+      "observation": {
+        "context": "absent",
+        "extra_context": [],
+        "understanding": {
+          "scope": "The overview and Method describe a fictional study using 20 synthetic session records from one facility in one week. Each session contributes one record; the unit is the session, not a confirmed distinct person. The comparison is between participants who selected the short explanation (S) and regular explanation (R), using end-of-session success on all four questions.",
+          "conditions": "The Method says there were no duplicate or missing records and no exclusions. Success has the same definition in both groups: all four answers correct; other outcomes are non-successes. The grouped completion contrast is calculated as 100 × (S successes/S sessions − R successes/R sessions). The stated requirements are comparable success definitions and one record per session, which the text says are met. These conditions do not establish similar prior knowledge or random assignment.",
+          "claim": "The overview reports 7 successes in 10 S sessions and 4 in 10 R sessions, a descriptive difference of 30 percentage points. The Method explains how that contrast is computed and says it cannot separate explanation length from other possible group differences. The text does not claim a causal effect.",
+          "support": "The reported counts and group sizes support fractions of 70% for S and 40% for R, hence a 30 percentage-point contrast. The Method supplies the formula and says the records meet its stated data requirements. It also states that participant reasons for choosing a version and prior knowledge were not measured. The method’s name, definition, requirements, and formula are attributed to M, §1, Definition A; that source itself is not supplied here, though the formula is present in the block.",
+          "mechanism": "This is a descriptive calculation: count successful sessions within each selected group, divide by that group’s session count, and subtract R’s fraction from S’s, expressing the result in percentage points. The counts support the resulting contrast. Because version choice was self-selected, the calculation does not identify an effect of explanation length; unmeasured reasons for choice or prior knowledge could relate to outcomes.",
+          "limitations": "The records cover 20 sessions at one facility in one week, and the unit is sessions rather than an independently established sample of distinct people. Selection was not random. Reasons for version choice and prior knowledge were not measured, and no follow-up was recorded, so the text says it cannot address retention or later performance. The outcome is only the stated all-four-correct end-of-session criterion.",
+          "uncertainty": "The text does not provide participant-level details, the reasons for choosing versions, prior knowledge, later outcomes, or the contents and identity of the cited source M beyond its section and definition label. It does not establish whether the groups differed on other features or whether the contrast would recur elsewhere or later.",
+          "confusion": "In the earlier overview, I had no confusion about the descriptive comparison. Here the formula makes the unfamiliar method understandable from the supplied text. The citation to M remains unclear in provenance because M and its cited definition are unavailable; there is no further information in this block to resolve that.",
+          "unread": "The supplied text now includes the title, Overview, and Method. More manuscript text remains unread, so later results, discussion, or conclusions are unavailable."
+        }
+      },
+      "block_sha256": "a5782116ca8fe1ca93e4e401856dec16ea02c54e274f1b597a19563f337e33b3"
+    },
+    {
+      "at": "2026-10-02T14:20:49.349264+00:00",
+      "location": "lines 17-21",
+      "observation": {
+        "context": "absent",
+        "extra_context": [],
+        "understanding": {
+          "scope": "The manuscript describes a fictional study using synthetic records from 20 sessions at one facility during one week. Participants selected short (S) or regular (R) explanations, with 10 sessions in each group. The outcome is whether a session ended with all four questions answered correctly.",
+          "conditions": "Each session contributes one record, with no duplicates, missing values, or exclusions reported. Both groups use the same success definition. The contrast is the S success fraction minus the R success fraction, expressed in percentage points. Participants chose their version; random assignment and comparable prior knowledge are not established.",
+          "claim": "In these records, the success fraction was 70% for S and 40% for R, a 30 percentage-point absolute difference. The manuscript limits this finding to immediate recorded success and does not claim an effect caused by shortening the explanation.",
+          "support": "The reported counts, 7 successes out of 10 for S and 4 out of 10 for R, support the stated fractions; the remaining counts are 3 and 6 non-successes. The calculation 100 × (0.70 − 0.40) = 30 supports the descriptive contrast. The arithmetic and its interpretation as a difference between recorded fractions are supported by the supplied text.",
+          "mechanism": "The method counts successful sessions in each group, divides by the group’s session count, and subtracts R’s fraction from S’s. This supports a descriptive difference. Self-selection and unmeasured prior knowledge or reasons for choosing a version mean the calculation cannot isolate explanation length as a cause. No explanation for the difference or evidence about its persistence is supplied.",
+          "limitations": "The finding concerns only 20 sessions at one facility during one week and the specified end-of-session criterion. Sessions are the observation units, not an independently established sample of distinct people. The manuscript supplies no conclusion about statistical significance, causal effect, or generalization to learners as a population; it also reports no follow-up on retention or later performance.",
+          "uncertainty": "The records do not establish why participants selected their versions or whether groups differed in prior knowledge or other relevant features. Whether the difference would recur, persist, or have a causal explanation is unresolved. The cited source M, §1, Definition A, is not supplied; the formula and requirements attributed to it are included in the Method text.",
+          "confusion": "I had no confusion about the fractions or percentage-point calculation in the overview. The Method provided the formula for the named grouped completion contrast, resolving how it was calculated. The provenance of the citation to M remains unavailable, but that does not prevent understanding the calculation stated here.",
+          "unread": "The supplied checkpoints included the Overview, Method, and Findings, and this is identified as the final manuscript block. No further manuscript text is indicated as unread."
+        }
+      },
+      "block_sha256": "bf9748717554054d6b4c382ff9b1aadb4408f71824ee6decca118a7201b9fc84"
+    }
+  ]
+}

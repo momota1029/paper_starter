@@ -1,0 +1,40 @@
+{
+  "notice": "All cases are synthetic. No real research findings or people are represented.",
+  "cases": [
+    {
+      "id": "theory",
+      "request": "根拠に忠実な短い論文本文へ直す。成立しない結論は作らず、必要な判断を報告する。対照例は改善が必要な場合だけ変更する。",
+      "evidence": "For n a positive integer and x in R, f_n(x)=1 if n <= x <= n+1 and 0 otherwise. For every fixed x, f_n(x) tends to 0 as n tends to infinity. No uniform estimate tending to zero is supplied.",
+      "draft": "各点で f_n は 0 に収束する。したがって上限も 0 に収束し、この近似は全領域で一様に正しい。",
+      "control": "各正整数 n と実数 x に対し、g_n(x)=1/n とおく。このとき sup_{x∈R}|g_n(x)|=1/n→0（n→∞）である。"
+    },
+    {
+      "id": "empirical",
+      "request": "以下の結果段落を学術的に推敲する。未実施の解析は加えない。対照例は改善が必要な場合だけ変更する。",
+      "evidence": "Twelve volunteers used the program. The same twelve completed both measurements. Mean score was 10 before use and 7 after use. There was no control group, random assignment, or supplied variance. No causal identification or inferential analysis was performed.",
+      "draft": "プログラムは得点を30%減らした。したがって、この介入は一般集団でも有効である。",
+      "control": "参加した12人の平均得点は利用前の10から利用後の7へ低下した。比較群を設けていないため、この変化をプログラムの因果効果とは特定できない。"
+    },
+      {
+      "id": "qualitative",
+      "request": "資料に即した短い解釈段落に直す。架空の二資料の範囲を守る。対照例は改善が必要な場合だけ変更する。",
+      "evidence": "Fictional notebook A: 'I kept the old gate because replacing it would consume the winter budget.' Fictional notebook B: 'The new pump saves time, so we installed it this week.' Both were written by the same fictional caretaker in one season. No other testimonies are available.",
+      "draft": "管理人は古い門を保存した。これは住民全員が近代化を拒否していたことを証明する。",
+      "control": "記録Aは門を残す理由として費用を挙げ、記録Bは時間の節約を理由にポンプの導入を述べる。この二記録からは、管理人が設備ごとの実用上の条件を考慮していたという解釈が可能である。"
+    },
+    {
+      "id": "review",
+      "request": "レビューの探索範囲と結論が一致するよう文章を整える。調べていない文献や検索件数は作らない。対照例は改善が必要な場合だけ変更する。",
+      "evidence": "A fictional review searched one university catalogue on one date for English titles containing 'urban shade'. Six records were returned, all six abstracts were read. Four discuss measured temperature, two discuss interview-based comfort. Full texts and other databases were not examined.",
+      "draft": "全ての研究を網羅的に検討した結果、日陰が快適性を改善するという分野の一致した結論を確認した。",
+      "control": "一つの大学目録で得た英語の6件の要旨を確認した。扱う指標には実測温度と面接による快適性が含まれるため、両者を同じ効果として統合することはできない。"
+    },
+    {
+      "id": "translation",
+      "request": "英語の正本に忠実な日本語へ直す。対照訳は意味が保たれていれば維持する。",
+      "evidence": "Under condition C, some participants may benefit. The classification was introduced in the earlier study; we adopt it here. This observation does not establish a causal effect.",
+      "draft": "参加者は恩恵を受ける。我々が導入した分類により、この観察は因果効果を示す。",
+      "control": "条件Cの下では、一部の参加者が恩恵を受ける可能性がある。この分類は先行研究で導入されたものであり、本稿ではそれを採用する。この観察だけでは因果効果は確立されない。"
+    }
+  ]
+}

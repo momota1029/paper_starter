@@ -1,0 +1,75 @@
+{
+  "date": "2026-10-02",
+  "scope": "Prospective maintenance tests on three original synthetic fixtures, not full-paper equivalence",
+  "overall": "KNOWN_GAPS_IMPLEMENTED_AND_BOUNDED_TESTS_COMPLETED",
+  "previous_equivalence": "EQUIVALENCE_NOT_ESTABLISHED (historical result unchanged)",
+  "contracts": {
+    "C1": "positive coverage implemented and observed",
+    "C2": "conditional first-use/placement policy implemented and observed",
+    "C3": "constraint strength and actual-author-departure provenance implemented and observed"
+  },
+  "specialist": {
+    "reviewer": "contract_independent_audit",
+    "requested_model": "gpt-6.1-sol",
+    "effort": "high",
+    "backend_identity": "not independently observed",
+    "T": "no identified local defect",
+    "E": "no identified source/contract defect; separate goal audit found missing synthetic label",
+    "H": "minor IA-H-01 accepted; closed only for H-v2 after local independent recheck",
+    "control": "no unnecessary repair; unchanged"
+  },
+  "readers": {
+    "original": {
+      "artifact": "artifacts/E.md",
+      "id": "01a0fcf2-ef34-7d70-8b18-470d3e7fd4da",
+      "verdict": "literal partial: synthetic label absent; substantive goals recovered"
+    },
+    "repair": {
+      "artifact": "artifacts/E-v2.md",
+      "id": "01a0fcfa-45fc-7a02-89a7-7f0b02d52079",
+      "verdict": "recovered at all three boundaries",
+      "unresolved_information": "Source M itself was not supplied to reader; provenance remains unavailable"
+    },
+    "requested_model": "gpt-6-luna",
+    "effort": "high",
+    "client_turn_contexts": "both sessions: handshake plus 3 reading turns, model gpt-6-luna, effort high, read-only, approval never",
+    "backend_identity": "not independently certified",
+    "transport": "supplementary-cli-text",
+    "isolation": "process evidence inspected, not proven"
+  },
+  "runtime_audit": {
+    "reviewer": "eq_design_starter",
+    "finding": "summary substitution before record accepted by initial checker",
+    "repair": "bind summary to raw response, hashed checkpoint, full plan, artifact/manifest",
+    "closure": "independently reproduced acceptance of pristine and rejection of tampered/incomplete/reordered/duplicate-key evidence"
+  },
+  "tests": {
+    "unit_tests": 62,
+    "result": "all passed",
+    "skill_validation": "passed",
+    "source_doc_hashes": "unchanged against prior saved source manifest"
+  },
+  "hashes": {
+    "evals/contract-transfer/input-theory.md": "b4981f6d5b0b51665647fd1f325ddb4979e0fc9413d9843e8def12d5cba6aee0",
+    "evals/contract-transfer/input-empirical.md": "b733fac3198a4be1de4051076c706e62b1f65582c5613f92e715e48e38cfc614",
+    "evals/contract-transfer/input-humanities.md": "d38fe6a8e8bda239f01f3cf9ce1fea2b9867ed7a208f145fb3b60199a90df16b",
+    "evals/contract-transfer/control.md": "9efd0bde4745a44e0df44a0672c85029bcd74ec0cc377822845b68a613c4f675",
+    "evals/contract-transfer/protocol.md": "14d0627c54bc6ced4ba44d0491c93d0170f37c1ec43546b84637735158ae6267",
+    "evals/contract-transfer/artifacts/T.md": "acf70f0940a33c401d6ff37c7cf8deda29f28e74c66f70d75a996e8e61bc09a6",
+    "evals/contract-transfer/artifacts/E.md": "c8679fe550369be059a483b41368670ec987cf79c6769230425fdf85635245bd",
+    "evals/contract-transfer/artifacts/H.md": "ed1e8d4b25a244851f48696b70c13603fdd174efa548abfa623742c79ffc64e8",
+    "evals/contract-transfer/artifacts/E-v2.md": "623237dcb7256a5bfa62079f7112097af0c83fa41f576e52369ba38aebcf4eff",
+    "evals/contract-transfer/artifacts/H-v2.md": "49c6d5beffb25b45ce32100eef0d7881c70db890354befc76feba6d9c047bf6e",
+    "rules/quality-contract.md": "5fd4007a81ab7f013a7108b72c62dd949e0b73c867d7588956f6cc03402f8d58",
+    "tools/reader.py": "e6161b0ec250e3083474163ced6133658e6a7b6f14d1d0bcc456b3736f2ec9bb",
+    "tools/paper.py": "c510409d66c7c8e04f5ecc1f82bc22c4e739e55e7e08b36f64d28dcc53004cc0"
+  },
+  "limits": [
+    "synthetic materials and supplied sources, not actual research",
+    "no native role discovery/isolation certification",
+    "no PDF/TeX reader transport",
+    "no full-length multi-field doc comparison",
+    "no human or domain expert final reading"
+  ],
+  "publication": "No commit, push, upload, or global configuration changes"
+}

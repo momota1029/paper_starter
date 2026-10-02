@@ -1,0 +1,21 @@
+# Research is local by default. Use a separate research repository to share it.
+/inbox/*
+!/inbox/README.md
+/writing/*
+!/writing/README.md
+/output/*
+!/output/README.md
+/refs/*
+!/refs/README.md
+/index.bib
+/.paper-local/
+/.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.aux
+*.log
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+.DS_Store

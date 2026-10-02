@@ -1,0 +1,25 @@
+{
+  "variant": "R91",
+  "requested_model": "gpt-6-luna",
+  "requested_effort": "high",
+  "backend_model_observed": null,
+  "observations": [
+    {
+      "block": 1,
+      "saved_at": "2026-10-02 22:40:04.514725000 +0900",
+      "report": "**Checkpoint — Variant R91**\n\n- **What I can explain:** The manuscript defines observable diameter as the largest, over 1-Lipschitz real-valued functions, of the smallest oscillation on a set retaining at least \\(1-\\kappa\\) of the probability mass (equation `eq:definition`). It defines total variation as the largest mass difference over subsets (equation `eq:tvdef`).\n- **Role of the main result:** Theorem `thm:comparison` gives a one-sided bound when both metric and probability weights change: the metric error adds \\(\\delta\\), while total variation up to \\(\\tau\\) reduces the comparison parameter from \\(\\kappa\\) to \\(\\kappa-\\tau\\). The paragraph after the theorem explains the retained-mass reason for that shift.\n- **Unresolved or promised content:** The abstract promises two-point examples, including one attaining the metric bound and one showing why the mass-parameter shift matters. They are not in this block. A proof of the theorem is also not in this block.\n- **First confusing phrase:** None so far; the unfamiliar term “observable diameter” is defined in the text.\n- **Unread scope:** Anything after the final paragraph of this supplied block.\n\n**ISOLATION_FAILED:** No task-specific instructions or other manuscript material were supplied alongside the block."
+    },
+    {
+      "block": 2,
+      "saved_at": "2026-10-02 22:44:59.786808305 +0900",
+      "report": "**Checkpoint**\n\n- **Recovered content:** The proof derives the finite total variation formula \\(\\TV(\\mu,\\nu)=\\tfrac12\\sum_x|\\mu(x)-\\nu(x)|\\) (`eq:tvsum`), giving \\(\\mu(A)\\ge\\nu(A)-\\tau\\) for every subset. It then constructs \\(g(x)=\\min_y(f(y)+e(x,y))\\) (`eq:envelope`). The pointwise bounds \\(f-\\delta\\le g\\le f\\) (`eq:onesided`) make \\(g\\) 1-Lipschitz for \\(e\\) while increasing oscillation by at most \\(\\delta\\) (`eq:oscillation`). Choosing a set minimizing \\(g\\)'s oscillation under \\(\\nu\\) makes it eligible under \\(\\mu\\), which proves the comparison bound after taking the supremum over \\(f\\).\n- **Current role:** This block supplies the proof of Theorem `thm:comparison` from the preceding block and establishes the finite formula used for examples.\n- **Confusion and recovery:** No unresolved confusion. The envelope construction is the densest step; its Lipschitz property follows from the triangle inequality for \\(e\\), and its one-sided pointwise bounds explain why the oscillation cost is \\(\\delta\\), not \\(2\\delta\\).\n- **Unread scope:** The manuscript after this proof, including the examples promised in the abstract."
+    },
+    {
+      "block": 3,
+      "saved_at": "2026-10-02 22:46:23.976861005 +0900",
+      "report": "**Final reader checkpoint**\n\n- **Recovered content and textual basis:** “Reversing the comparison” applies Theorem `thm:comparison` with the pairs interchanged, yielding `eq:reverse`; with equal weights and \\(\\tau=0\\), the two directions give Corollary `cor:metric`. The metric sharpness example shows an observable-diameter difference of exactly \\(\\delta\\) (“The metric error is attained”). The mass-threshold example has total variation \\(\\varepsilon\\) but a diameter difference of \\(1\\) at \\(\\kappa=0.4\\) (“Small mass changes can cross the eligibility threshold”). The final paragraphs show how the shifted comparison accommodates that jump and summarize the distinction between metric and mass perturbations.\n- **Confusion or recovery:** The key detail in the mass example is eligibility at equality: the singleton of mass \\(0.6\\) qualifies under \\(\\mu\\), but after a small weight change neither singleton qualifies under \\(\\nu_\\varepsilon\\). This accounts for the jump from \\(0\\) to \\(1\\).\n- **What remains unsupported by the supplied manuscript:** The examples establish these behaviors for the stated two-point finite space. The text does not establish claims about continuity or sharpness in settings beyond those it describes.\n- **What I can explain after finishing:** I can explain the definition of observable diameter, the comparison theorem and its proof, its reversed form and equal-weight metric corollary, and how the two examples illustrate the additive metric term and the discarded-mass shift."
+    }
+  ],
+  "isolation_clarification": "Absent. No project AGENTS, manuscript rules, expected answers, or other manuscript content were present beyond the supplied R91 block and generic platform context. “ISOLATION_FAILED” was inconsistent with that basis.",
+  "note": "Clarification occurred before block 2; original contradictory label retained."
+}

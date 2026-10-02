@@ -1,0 +1,9 @@
+title = "{{TITLE}}"
+profile = "{{PROFILE}}"
+language = "{{LANGUAGE}}"
+status = "draft"
+manuscript = "{{MANUSCRIPT}}"
+writer_id = "author"
+reader = "関連分野の基礎知識を持つ読者"
+# Add external evidence files (repository-relative) used by the review.
+inputs = []

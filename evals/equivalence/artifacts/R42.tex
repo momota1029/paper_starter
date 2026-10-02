@@ -1,0 +1,305 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsthm,amssymb}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\DeclareMathOperator{\ObsDiam}{ObsDiam}
+\DeclareMathOperator{\osc}{osc}
+\DeclareMathOperator{\TV}{TV}
+
+\title{Observable Diameter under Metric and Mass Perturbations}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+On a finite metric space, observable diameter measures the largest,
+over real-valued 1-Lipschitz functions, of the smallest oscillation
+remaining after a prescribed amount of mass may be discarded. We
+compare this quantity when both the metric and the probability weights
+change on the same finite set. A uniform metric error contributes its
+size additively, while a total variation error requires a corresponding
+reduction in the allowed discarded mass on the comparison side. A
+two-point example attains the metric bound, and another shows why the
+discarded-mass shift cannot be replaced by continuity at the same
+parameter.
+\end{abstract}
+
+\section{Retained oscillation and the comparison theorem}
+
+A real-valued observable can vary widely on a few points while remaining
+nearly constant on most of the probability mass. To measure its spread
+on most of a space, we first minimize its oscillation on subsets carrying
+enough mass. Observable diameter then takes the largest of these
+minimal spreads over all 1-Lipschitz observables.
+
+Let $X$ be a nonempty finite set. A probability weight $\mu$ on $X$
+satisfies $\mu(x)\ge0$ for $x\in X$ and
+$\sum_{x\in X}\mu(x)=1$; write
+$\mu(A)=\sum_{x\in A}\mu(x)$ for $A\subseteq X$.
+For a function $f:X\to\mathbb R$ and a nonempty subset $A\subseteq X$,
+its \emph{oscillation} on $A$ is
+\[
+ \osc_A f=\max_{x\in A}f(x)-\min_{x\in A}f(x).
+\]
+For a metric $d$ on $X$, a function $f:X\to\mathbb R$ is
+1-Lipschitz with respect to $d$ if
+$|f(x)-f(y)|\le d(x,y)$ for all $x,y\in X$.
+
+For $0\le\kappa<1$, define
+\begin{equation}\label{eq:definition}
+ \ObsDiam(X,d,\mu;\kappa)
+ =\sup_{\substack{f:X\to\mathbb R\\
+                  |f(x)-f(y)|\le d(x,y)\ (x,y\in X)}}
+    \ \min_{\substack{A\subseteq X\\\mu(A)\ge1-\kappa}}
+      \osc_A f.
+\end{equation}
+Here $\kappa$ is the \emph{discarded-mass parameter}: an eligible set
+must retain at least $1-\kappa$ of the mass. Eligibility includes
+equality at this threshold. The eligible family contains $X$ and is
+finite, so the inner minimum exists. Since $1-\kappa>0$, every
+eligible set is nonempty. Also
+\[
+ 0\le\ObsDiam(X,d,\mu;\kappa)
+ \le\operatorname{diam}_d X,
+ \qquad
+ \operatorname{diam}_d X=\max_{x,y\in X}d(x,y),
+\]
+because every eligible oscillation of a 1-Lipschitz function is at most
+this finite diameter. The supremum in \eqref{eq:definition} is thus a
+finite real number.
+
+For two probability weights $\mu,\nu$ on $X$, define their
+\emph{total variation distance} by
+\begin{equation}\label{eq:tvdef}
+ \TV(\mu,\nu)=\sup_{A\subseteq X}|\mu(A)-\nu(A)|.
+\end{equation}
+It controls the mass change of every subset, which is the information
+needed to compare the eligible sets in \eqref{eq:definition}.
+
+\begin{theorem}\label{thm:comparison}
+Let $d$ and $e$ be metrics on the nonempty finite set $X$, and let
+$\mu,\nu$ be probability weights on $X$. Suppose that $\delta\ge0$ and
+$0\le\tau\le\kappa<1$ satisfy
+\[
+ |d(x,y)-e(x,y)|\le\delta\quad(x,y\in X),
+ \qquad \TV(\mu,\nu)\le\tau.
+\]
+Then
+\begin{equation}\label{eq:comparison}
+ \ObsDiam(X,d,\mu;\kappa)
+ \le \ObsDiam(X,e,\nu;\kappa-\tau)+\delta.
+\end{equation}
+\end{theorem}
+
+The two perturbations enter the estimate in different places. The
+metric error $\delta$ increases the permitted oscillation. The mass
+error $\tau$ requires the comparison set to retain at least
+$1-\kappa+\tau$ under $\nu$, so that it still retains at least
+$1-\kappa$ under $\mu$. This requirement explains both the shift
+$\kappa-\tau$ and the condition $\tau\le\kappa$.
+
+\section{Proof of the comparison}
+
+\begin{proof}
+We first verify a finite formula for total variation, also useful for
+computing the examples. Set $h(x)=\mu(x)-\nu(x)$ for $x\in X$ and
+$P=\{x\in X:h(x)>0\}$. Since $\sum_{x\in X}h(x)=0$, the number
+$S=\sum_{x\in P}h(x)$ satisfies
+\[
+ S=-\sum_{\substack{x\in X\\h(x)<0}}h(x)
+   =\frac12\sum_{x\in X}|h(x)|.
+\]
+For every subset $A\subseteq X$, the sum $\sum_{x\in A}h(x)$ lies
+between $-S$ and $S$, and the subset $P$ attains $S$. Thus
+\begin{equation}\label{eq:tvsum}
+ \TV(\mu,\nu)=\frac12\sum_{x\in X}|\mu(x)-\nu(x)|.
+\end{equation}
+In particular, the assumed total variation bound implies
+$\mu(A)\ge\nu(A)-\tau$ for every $A\subseteq X$.
+
+Now fix any $d$-1-Lipschitz function $f:X\to\mathbb R$. Define
+$g:X\to\mathbb R$ by
+\begin{equation}\label{eq:envelope}
+ g(x)=\min_{y\in X}\bigl(f(y)+e(x,y)\bigr)\quad(x\in X).
+\end{equation}
+The minimum exists because $X$ is finite and nonempty. The term $y=x$
+gives $g(x)\le f(x)$. For any $x,y\in X$, the Lipschitz condition for
+$f$ and the metric comparison give
+\[
+ f(y)+e(x,y)
+ \ge f(x)-d(x,y)+e(x,y)
+ \ge f(x)-\delta.
+\]
+Taking the minimum over $y$ yields the one-sided approximation
+\begin{equation}\label{eq:onesided}
+ f(x)-\delta\le g(x)\le f(x)\quad(x\in X).
+\end{equation}
+
+The function $g$ is 1-Lipschitz for $e$. To see this, fix $x,z\in X$
+and choose $y_z\in X$ attaining the minimum in \eqref{eq:envelope}
+for $z$. By the triangle inequality for $e$,
+\[
+ g(x)\le f(y_z)+e(x,y_z)
+       \le f(y_z)+e(z,y_z)+e(x,z)
+       =g(z)+e(x,z).
+\]
+Interchanging $x$ and $z$ proves
+$|g(x)-g(z)|\le e(x,z)$.
+
+For any nonempty $A\subseteq X$, \eqref{eq:onesided} implies
+\[
+ \max_{x\in A}f(x)\le\max_{x\in A}g(x)+\delta,
+ \qquad
+ \min_{x\in A}f(x)\ge\min_{x\in A}g(x).
+\]
+Subtracting gives
+\begin{equation}\label{eq:oscillation}
+ \osc_A f\le\osc_A g+\delta.
+\end{equation}
+Only one endpoint of the oscillation needs an additive error: the
+pointwise difference $f-g$ lies between zero and $\delta$. A bound by
+$2\delta$ would lose this one-sided information.
+
+Choose a subset $A_*\subseteq X$ minimizing $\osc_A g$ subject to
+$\nu(A)\ge1-(\kappa-\tau)$. Such a set exists because there are
+finitely many eligible sets and $X$ is one of them. It is nonempty,
+and the total variation estimate gives
+\[
+ \mu(A_*)\ge\nu(A_*)-\tau
+ \ge1-\kappa+\tau-\tau=1-\kappa.
+\]
+Hence $A_*$ is also eligible for the $\mu$-minimum at $\kappa$.
+Using \eqref{eq:oscillation} on this set, we obtain
+\begin{align*}
+ \min_{\substack{A\subseteq X\\\mu(A)\ge1-\kappa}}\osc_A f
+ &\le\osc_{A_*}f\\
+ &\le\osc_{A_*}g+\delta\\
+ &=\min_{\substack{A\subseteq X\\\nu(A)\ge1-(\kappa-\tau)}}
+       \osc_A g+\delta\\
+ &\le\ObsDiam(X,e,\nu;\kappa-\tau)+\delta.
+\end{align*}
+The last inequality holds because $g$ is $e$-1-Lipschitz and therefore
+is one of the functions in the defining supremum on the right.
+This bound holds for every $d$-1-Lipschitz function $f$. Taking their
+supremum only now proves \eqref{eq:comparison}.
+\end{proof}
+
+\section{Reversing the comparison}
+
+The assumptions of Theorem~\ref{thm:comparison} are symmetric in the
+pairs $(d,\mu)$ and $(e,\nu)$: the metric error is unchanged, and
+\eqref{eq:tvdef} gives $\TV(\nu,\mu)=\TV(\mu,\nu)$. Applying the
+theorem with the pairs interchanged gives, under the same parameter
+constraints,
+\begin{equation}\label{eq:reverse}
+ \ObsDiam(X,e,\nu;\kappa)
+ \le\ObsDiam(X,d,\mu;\kappa-\tau)+\delta.
+\end{equation}
+Both comparisons shift the parameter on their right side. For
+$\tau>0$, they do not give an absolute-difference bound at the same
+discarded-mass parameter.
+
+\begin{corollary}\label{cor:metric}
+If $\mu=\nu$ and $|d(x,y)-e(x,y)|\le\delta$ for all $x,y\in X$, then
+for every $0\le\kappa<1$,
+\[
+ \bigl|\ObsDiam(X,d,\mu;\kappa)
+       -\ObsDiam(X,e,\mu;\kappa)\bigr|\le\delta.
+\]
+\end{corollary}
+
+\begin{proof}
+For equal weights, \eqref{eq:tvdef} gives total variation zero.
+Set $\tau=0$ in \eqref{eq:comparison} and \eqref{eq:reverse}; these
+are the two inequalities defining the asserted absolute bound.
+\end{proof}
+
+\section{Sharpness and a mass threshold}
+
+\subsection{The metric error is attained}
+
+Let $X=\{a,b\}$, with $\mu(a)=\mu(b)=1/2$, and choose
+$0\le\kappa<1/2$. Let $s>0$ and $\delta\ge0$, and define metrics by
+\[
+ d(a,b)=s+\delta,\qquad e(a,b)=s.
+\]
+The diagonal distances are zero and the distances are symmetric, so
+these positive off-diagonal values define metrics. Their uniform
+difference is $\delta$.
+
+The retained-mass threshold $1-\kappa$ is greater than $1/2$.
+Neither singleton is eligible, and thus every eligible set is $X$.
+For $d$-1-Lipschitz $f$, its oscillation on $X$ is
+$|f(a)-f(b)|\le s+\delta$. This upper bound is attained by
+$f(a)=0$ and $f(b)=s+\delta$, which is $d$-1-Lipschitz. Therefore
+\[
+ \ObsDiam(X,d,\mu;\kappa)=s+\delta.
+\]
+For $e$, the bound $|f(a)-f(b)|\le s$ is attained by the values
+$0$ and $s$, giving
+\[
+ \ObsDiam(X,e,\mu;\kappa)=s.
+\]
+Their difference equals $\delta$, so the additive metric constant in
+Corollary~\ref{cor:metric} is attained.
+
+\subsection{Small mass changes can cross the eligibility threshold}
+
+Keep $X=\{a,b\}$, now with distance one between the points, and denote
+this metric by $d$. Fix $\kappa=0.4$ and define weights
+\[
+ \mu(a)=0.6,\quad\mu(b)=0.4,
+ \qquad
+ \nu_\varepsilon(a)=0.6-\varepsilon,\quad
+ \nu_\varepsilon(b)=0.4+\varepsilon,
+ \qquad 0<\varepsilon<0.1.
+\]
+Formula~\eqref{eq:tvsum} gives
+\[
+ \TV(\mu,\nu_\varepsilon)
+ =\tfrac12(\varepsilon+\varepsilon)=\varepsilon.
+\]
+At parameter $\kappa=0.4$, the retained-mass threshold is $0.6$.
+The singleton $\{a\}$ is eligible under $\mu$ and has oscillation
+zero for every function. Nonnegativity of oscillation therefore gives
+\[
+ \ObsDiam(X,d,\mu;0.4)=0.
+\]
+Under $\nu_\varepsilon$, both singletons have mass less than $0.6$:
+$0.6-\varepsilon<0.6$ and $0.4+\varepsilon<0.5<0.6$.
+Only $X$ is eligible. Every $d$-1-Lipschitz function has oscillation
+at most one on $X$, and the values $f(a)=0$, $f(b)=1$ attain one.
+Consequently,
+\[
+ \ObsDiam(X,d,\nu_\varepsilon;0.4)=1.
+\]
+The total variation tends to zero with $\varepsilon$, while this
+difference of observable diameters stays equal to one. Thus arbitrarily
+small changes in mass can destroy continuity at a fixed discarded-mass
+parameter. The inclusion of equality in the eligibility condition is
+essential to this calculation: $\{a\}$ qualifies under $\mu$ precisely
+at mass $0.6$.
+
+This jump is consistent with the shifted comparison. Set
+$\tau=\varepsilon$ and $e=d$, so that $\delta=0$ and
+$0\le\tau\le0.4$. The reversed bound \eqref{eq:reverse} states
+\[
+ 1=\ObsDiam(X,d,\nu_\varepsilon;0.4)
+ \le\ObsDiam(X,d,\mu;0.4-\varepsilon).
+\]
+On the right, the retained-mass threshold is
+$1-(0.4-\varepsilon)=0.6+\varepsilon$. Both singleton masses under
+$\mu$ are below this threshold, so only $X$ is eligible and the
+right side equals one. The bound is therefore $1\le1$.
+
+The examples separate the two effects in Theorem~\ref{thm:comparison}:
+the metric error controls oscillation additively, whereas the mass error
+changes which sets are eligible. The latter is why the theorem retains
+the shift in discarded mass. All statements here concern metrics and
+probability weights on one nonempty finite set.
+
+\end{document}

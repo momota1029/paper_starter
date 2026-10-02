@@ -1,0 +1,90 @@
+{
+  "date": "2026-10-02",
+  "kind": "synthetic-live-evaluation",
+  "input": "evals/cases.json",
+  "input_sha256": "e92e6cabd926f417b13ac100976917fe42eb08936eb58cb6dd03e93e599c5fa4",
+  "requested_models": {
+    "writer": "gpt-6.1-sol",
+    "specialist": "gpt-6.1-sol",
+    "reader": "gpt-6-luna",
+    "effort": "high"
+  },
+  "runtime_model_metadata_observed": false,
+  "cases": [
+    {
+      "id": "theory",
+      "revised": "各正整数 n に対し、関数 f_n: R→R を、n≤x≤n+1 なら f_n(x)=1、それ以外では f_n(x)=0 と定める。固定した実数 x に対し、n>x となれば f_n(x)=0 なので、n→∞ のとき f_n(x)→0 である。一方、各 n で f_n(n)=1 であり、すべての x で 0≤f_n(x)≤1 だから、sup_{x∈R}|f_n(x)|=1 である。したがって、この関数列は R 上で 0 に各点収束するが、一様収束しない。",
+      "control_changed": false,
+      "unresolved": [
+        "R 全域での一様な近似が研究目的として必要なら、近似列または対象領域を変更するかは著者の判断になる。供給された f_n のまま一様収束を主張することはできない。"
+      ]
+    },
+    {
+      "id": "empirical",
+      "revised": "プログラムを利用した志願者12人は全員、利用前後の両測定を完了した。平均得点は利用前の10から利用後の7へ、3点低下した（利用前の平均に対して30%の低下）。比較群や無作為割付を設けていないため、この前後差をプログラムの因果効果とは特定できず、一般集団での有効性も結論できない。",
+      "control_changed": false,
+      "unresolved": [
+        "分散や個人別得点は供給されておらず、ばらつき・信頼区間・有意性は評価していない。未実施の推測統計を追加していない。",
+        "得点尺度の意味が供給されていないため、得点の低下自体を望ましい改善とは解釈していない。因果効果および一般集団への適用可能性は、この資料では判断できない。"
+      ]
+    },
+    {
+      "id": "qualitative",
+      "revised": "同じ管理人が一季節に記した記録Aは、門の交換に冬季予算を費やす必要があることを、古い門を残した理由として挙げる。記録Bは、時間を節約できることを理由に、その週に新しいポンプを導入したと述べる。この二記録は、管理人が設備ごとの費用や便益を考慮していたという読みを支持するが、住民全員が近代化を拒否していたとは結論できない。",
+      "control_changed": false,
+      "unresolved": [
+        "住民の態度、管理人の一般的な近代化観、他の時期・設備での判断は供給されていない。二記録の読みをそれらへ広げていない。",
+        "記録に述べられた理由を確認した範囲であり、行為の実態や管理人の全動機を独立に検証したものではない。"
+      ]
+    },
+    {
+      "id": "review",
+      "revised": "ある1日に、一つの大学目録で、表題に「urban shade」を含む英語の文献を検索し、得られた6件すべての要旨を確認した。4件は実測温度を、2件は面接による快適性を扱っており、両者は同じ評価項目ではない。本文や他のデータベースは確認していないため、この探索を網羅的な検討とはいえない。また、評価項目の分類だけから、日陰による快適性の改善や、それに関する分野全体の一致を結論することはできない。",
+      "control_changed": false,
+      "unresolved": [
+        "正確な検索日、文献の同定情報、各要旨の具体的な結果、本文、他のデータベースは未提供・未確認。再現可能な検索記録や効果の結論を完成した扱いにはしていない。",
+        "異なる評価項目を関係づける理論・尺度・統合手続きは供給されていないため、統合分析を実施していない。"
+      ]
+    },
+    {
+      "id": "translation",
+      "revised": "条件Cの下では、一部の参加者が恩恵を受ける可能性がある。この分類は先行研究で導入されたものであり、本稿ではそれを採用する。この観察は因果効果を確立するものではない。",
+      "control_changed": false,
+      "unresolved": [
+        "条件Cの内容と先行研究の同定情報は原文にないため補っていない。翻訳に必要な意味は提供された三文に限定して照合した。"
+      ]
+    }
+  ],
+  "first_independent_audit": {
+    "theory": "pass",
+    "empirical": "pass",
+    "qualitative": "pass",
+    "review": "local repair required: manuscript contained task-context wording; finding overstated full-text claim",
+    "translation": "pass"
+  },
+  "repair": {
+    "scope": "review case only",
+    "changes": [
+      "Removed task-context wording from manuscript.",
+      "Removed unsupported assertion that draft explicitly claimed full-text review."
+    ],
+    "closure": "Fresh independent specialist checked raw evidence and revised review case, reporting no remaining defect in the assigned scope. Other four cases retained their prior audit."
+  },
+  "reader": {
+    "scope": "theory revised passage only; two separately supplied blocks, first checkpoint saved before second",
+    "requested_model": "gpt-6-luna",
+    "checkpoint_1": "Recovered definition and pointwise convergence, no confusion reported; asked what follows from pointwise convergence.",
+    "checkpoint_2": "Recovered supremum equal to 1 and failure of uniform convergence, no confusion reported.",
+    "limitations": [
+      "No blinded baseline comparison.",
+      "Not a human reader.",
+      "No full-manuscript evaluation.",
+      "No independently observed backend model metadata."
+    ]
+  },
+  "limitations": [
+    "Synthetic development cases, not held-out research manuscripts.",
+    "No claim of genre-wide quality equivalence.",
+    "Semantic support checks do not authenticate sources or certify research."
+  ]
+}
