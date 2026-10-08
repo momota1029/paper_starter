@@ -37,6 +37,10 @@ config_file = "agents/bibliography_reviewer.toml"
 description = "Sol: independent design audit, section dependencies, and prose structure."
 config_file = "agents/structure_reviewer.toml"
 
+[agents.comparative_prose_reviewer]
+description = "Luna: optional A/B comparison for meaning-preserving prose revisions."
+config_file = "agents/comparative_prose_reviewer.toml"
+
 [agents.blind_reader]
 description = "Luna: isolated fresh reader; receives only artifact prefixes and neutral background."
 config_file = "agents/blind_reader.toml"

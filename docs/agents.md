@@ -23,6 +23,7 @@
 | 引用が主張を支えるか、帰属・新規性の判断 | [source_reviewer](../.codex/agents/source_reviewer.toml) | Sol | `sources` |
 | 引用キー、書誌情報、版・資料同一性、配布物の照合 | [bibliography_reviewer](../.codex/agents/bibliography_reviewer.toml) | Luna | `bibliography` |
 | 節の依存、導入、圧縮、媒体に合う情報配置 | [structure_reviewer](../.codex/agents/structure_reviewer.toml) | Sol | `structure`。設計者とは別の新しい担当 |
+| 意味・範囲を保つ文章改稿の差分比較（比較基準が固定済み） | [comparative_prose_reviewer](../.codex/agents/comparative_prose_reviewer.toml) | Luna | `structure` の補助報告。改稿前版と現行版を比較し、初読や正確性の確認には数えない |
 | 原稿を初めて読む読者の理解を観測 | [blind_reader](../.codex/agents/blind_reader.toml) | Luna | `reader`。専門性の保証には使わない |
 | 難しい読解、必要な修正後も残る読書障害の再確認 | [blind_reader_sol](../.codex/agents/blind_reader_sol.toml) | Sol | `reader`。履歴を継承しない新しい初読者 |
 | 生成済み PDF・HTML 等の表示・組版確認 | [render_reviewer](../.codex/agents/render_reviewer.toml) | Luna | `render`。実際に表示を見た範囲だけ報告 |
@@ -32,6 +33,10 @@
 | 現行版の人間による最終通読 | 人間の担当者 | 対象外 | `human`。AI の定義を作らず、AI の報告で代用しない |
 
 `Luna` は `gpt-6-luna`、`Sol` は `gpt-6.1-sol` の略記。論文の報告区分は [tools/paper.py](../tools/paper.py) の役割名に対応する。申請書の二役は論文の最終確認人数に数えない。モデル名、役割名、実行ごとの `reviewer_id` は別物である。同じ役割でも各独立実行には別の ID を付け、設計・執筆に参加した ID を記録する。初読者と情報を持つ専門監査者を同一実行で兼任させない。
+
+この表は分野横断で再利用する役割のカタログであり、全分野の専門家が同梱されているという意味ではない。変更した結論・証明・分析に必要な専門性が一般の `correctness_reviewer` の範囲を超える場合、プロジェクト契約で必要な専門家・独立担当・根拠を特定し、必要なら専用の役割定義を追加する。適任者を確保できない場合は、一般レビューで代用せず `INDEPENDENT_CHECKS_INCOMPLETE` として未確認範囲を残す。役割数の多さ自体を品質指標にしない。
+
+`comparative_prose_reviewer` は改稿前の固定基準版があり、主張・根拠・範囲を変えない文章改善を問う場合だけ使う。基準版と現行版の差から読者向けの具体的な利得が示せなければ基準版を維持する。主張、証明、解釈、引用支持、または分野慣行を変える差分は比較評価の対象外として、該当する独立役へ回す。これは任意の補助確認であり、通常の構造監査や初読を置き換えない。
 
 ## 起動予算と引継ぎ
 
