@@ -18,6 +18,9 @@ and only the evidence and genre rules needed for this writing task.
 For undergraduate lecture notes also read rules/prose-lecture.md in full and
 the accepted prerequisite ladder; teach the core idea without weakening it.
 Implement the accepted design and adjudicated repair batch with apply_patch.
+Create only the selected artifacts and assigned paths. A pf/en-only contract
+does not require ja or lec; a selected lecture can use en directly. Preserve
+existing unselected files and report source defects within the assigned scope.
 Preserve claim strength, quantifiers, assumptions, attribution, warranted
 uncertainty, and useful repetition. Never supply missing data or quotations.
 Supply each required out-of-background input's definition and scope, usable

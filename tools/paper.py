@@ -536,6 +536,38 @@ def agent_config_check(root):
     require("human" not in found, "human read cannot be configured as an AI role")
 
 
+def skill_config_check(root):
+    """Check the shipped single-line metadata and invocation policy, not all YAML."""
+    policies = {"paper-writing": "true", "application-interview": "true",
+                "blind-referee": "false", "undergraduate-lecture": "true"}
+    for name, expected in policies.items():
+        base = f".agents/skills/{name}"
+        entry = safe(root, base + "/SKILL.md")
+        require(entry.is_file(), f"missing {base}/SKILL.md")
+        content = entry.read_text(encoding="utf-8")
+        front = re.match(r"\A---\n(.*?)\n---(?:\n|\Z)", content, re.DOTALL)
+        require(front is not None, f"skill {name}: missing frontmatter")
+        for key in ("name", "description"):
+            values = re.findall(rf"^{key}: ([^\n]+)$", front[1], re.MULTILINE)
+            require(len(values) == 1 and values[0].strip() not in {"", "''", '\"\"'},
+                    f"skill {name}: missing or duplicate {key}")
+            if key == "name":
+                require(values[0] == name, f"skill {name}: identity mismatch")
+        metadata = safe(root, base + "/agents/openai.yaml")
+        # The lecture overlay inherits the host's automatic-invocation default.
+        if name == "undergraduate-lecture" and not metadata.exists():
+            continue
+        require(metadata.is_file(), f"skill {name}: missing agents/openai.yaml")
+        text = metadata.read_text(encoding="utf-8")
+        sections = re.findall(r"^policy:\n((?:[ \t]+[^\n]*\n?)*)", text, re.MULTILINE)
+        require(len(sections) == 1, f"skill {name}: missing or duplicate policy")
+        values = re.findall(r"^  allow_implicit_invocation: (true|false)$",
+                            sections[0], re.MULTILINE)
+        keys = re.findall(r"^[ \t]+allow_implicit_invocation:", sections[0], re.MULTILINE)
+        require(len(keys) == 1 and values == [expected],
+                f"skill {name}: invocation policy mismatch")
+
+
 def check_workspace(root):
     for name in ("AGENTS.md", "README.md", "index.md", "rules/INDEX.md",
                  ".agents/skills/paper-writing/SKILL.md",
@@ -547,6 +579,7 @@ def check_workspace(root):
     rule_index = (root / "rules/INDEX.md").read_text(encoding="utf-8")
     require(all(f"({name})" in rule_index for name in required_rules), "rule missing from INDEX")
     agent_config_check(root)
+    skill_config_check(root)
     checked = 0
     for path in root.rglob("*.md"):
         rel = path.relative_to(root)

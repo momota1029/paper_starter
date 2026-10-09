@@ -10,6 +10,9 @@ When entered directly, read that skill once and retain its risk level,
 verification, review, build, record, and authority boundaries. Do not recurse.
 Read [lecture prose](../../../rules/prose-lecture.md) in full before design or
 writing. Produce only the companion the user requested.
+An established `[slug]_lec.tex` target also selects this overlay; preserve an
+explicit author-specified audience instead of inferring a different one from
+the filename.
 
 ## Reader and prerequisite contract
 

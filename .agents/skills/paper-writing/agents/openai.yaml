@@ -1,0 +1,5 @@
+interface:
+  display_name: "論文執筆・改稿"
+  short_description: "分野に合わせた論文の執筆、改稿、査読、翻訳と理解用ノートの制作"
+policy:
+  allow_implicit_invocation: true

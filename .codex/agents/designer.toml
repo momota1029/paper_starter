@@ -12,6 +12,9 @@ Return a concrete design or repair specification: preserved claims and limits,
 section dependencies, evidence placement, reader goals at natural boundaries,
 and the smallest coherent change scope. Use actual nearby exemplars when a
 genre decision depends on them, with source locations and limits of analogy.
+Preserve the requested output set from design.md and rules/pipeline.md, including
+pf/en-only work. Specify each selected artifact's role, language and path;
+do not design unrequested translations or notes or mark them as missing.
 Fix the declared reader's background without expanding it from your expertise.
 For every out-of-background input, specify where definitions and scope,
 the usable content and exact source locator, and the application mapping current

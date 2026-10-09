@@ -30,12 +30,16 @@ class PaperCLI(unittest.TestCase):
         self.root = Path(self.temporary.name)
         shutil.copytree(REPOSITORY / "templates" / "project", self.root / "templates" / "project")
         shutil.copytree(REPOSITORY / ".codex", self.root / ".codex")
-        for name in ("AGENTS.md", "README.md", "index.md", "rules/INDEX.md",
-                     ".agents/skills/paper-writing/SKILL.md",
-                     ".agents/skills/blind-referee/SKILL.md",
-                     ".agents/skills/undergraduate-lecture/SKILL.md",
-                     ".agents/skills/application-interview/SKILL.md"):
+        for name in ("AGENTS.md", "README.md", "index.md", "rules/INDEX.md"):
             self.write(name, "# Synthetic fixture\n")
+        for skill in ("paper-writing", "blind-referee", "undergraduate-lecture",
+                      "application-interview"):
+            self.write(f".agents/skills/{skill}/SKILL.md",
+                       f"---\nname: {skill}\ndescription: Synthetic fixture only.\n---\n")
+            if skill != "undergraduate-lecture":
+                policy = "false" if skill == "blind-referee" else "true"
+                self.write(f".agents/skills/{skill}/agents/openai.yaml",
+                           f"policy:\n  allow_implicit_invocation: {policy}\n")
         self.write("rules/quality-contract.md", "# Synthetic quality contract rule\n")
         self.write("rules/INDEX.md", "[Quality contract](quality-contract.md)\n")
 
@@ -57,6 +61,44 @@ class PaperCLI(unittest.TestCase):
                 path.unlink()
                 self.run_cli("check", ok=False, contains="missing")
                 self.write(str(path.relative_to(self.root)), body)
+
+    def test_skill_identity_and_description_are_checked(self):
+        path = ".agents/skills/paper-writing/SKILL.md"
+        for body in ("# Missing metadata\n",
+                     "---\nname: other\ndescription: Fixture.\n---\n",
+                     "---\nname: paper-writing\n---\n",
+                     "---\nname: paper-writing\ndescription: \"\"\n---\n",
+                     "---\nname: paper-writing\nname: paper-writing\ndescription: Fixture.\n---\n"):
+            with self.subTest(body=body):
+                self.write(path, body)
+                self.run_cli("check", ok=False, contains="skill paper-writing:")
+
+    def test_required_skill_invocation_metadata_is_checked(self):
+        for skill, expected in (("paper-writing", "true"),
+                                ("application-interview", "true"),
+                                ("blind-referee", "false")):
+            path = f".agents/skills/{skill}/agents/openai.yaml"
+            for body in (None, "policy:\n  allow_implicit_invocation: invalid\n",
+                         f"policy:\n  allow_implicit_invocation: {'false' if expected == 'true' else 'true'}\n",
+                         f"interface:\n  allow_implicit_invocation: {expected}\n",
+                         f"policy:\n  allow_implicit_invocation: {expected}\n  allow_implicit_invocation: invalid\n",
+                         f"policy:\n  allow_implicit_invocation: {expected}\npolicy:\n  allow_implicit_invocation: {expected}\n"):
+                with self.subTest(skill=skill, body=body):
+                    if body is None:
+                        (self.root / path).unlink()
+                    else:
+                        self.write(path, body)
+                    self.run_cli("check", ok=False, contains=f"skill {skill}:")
+                self.write(path, f"policy:\n  allow_implicit_invocation: {expected}\n")
+        self.run_cli("check")
+
+    def test_lecture_accepts_default_or_explicit_automatic_invocation(self):
+        self.run_cli("check")
+        path = ".agents/skills/undergraduate-lecture/agents/openai.yaml"
+        self.write(path, "policy:\n  allow_implicit_invocation: true\n")
+        self.run_cli("check")
+        self.write(path, "policy:\n  allow_implicit_invocation: false\n")
+        self.run_cli("check", ok=False, contains="skill undergraduate-lecture:")
 
     def json(self, name, value):
         return self.write(name, json.dumps(value, ensure_ascii=False, indent=2) + "\n")

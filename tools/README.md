@@ -26,6 +26,9 @@ python3 tools/paper.py check
 
 `check` はローカルリンクのファイル到達性、規則の索引、設定、メタデータ、
 主張記録、研究一覧の鮮度を検査する。リンクのアンカー・外部URL・原稿の意味は検査しない。
+同梱する四つのskillについて、入口の存在、単一行の `name / description`、
+フォルダ名との一致、宣言された `policy.allow_implicit_invocation` も照合する。
+これは同梱形式の確認であり、任意のYAML文法やクライアントでの起動を検証しない。
 ひな型を作った直後の空の主張記録は `check` を通るが `readiness` は通らない。
 
 主要主張の `claims.json` の例:

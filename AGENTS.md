@@ -9,7 +9,8 @@ below are relative to this root. Read selected instructions in full.
 - Explicit `blind-referee` / 初見査読 command: read
   [.agents/skills/blind-referee/SKILL.md](.agents/skills/blind-referee/SKILL.md).
   This standalone entry is report-only, not permission to rewrite.
-- Undergraduate-accessible research lecture notes: use
+- Undergraduate-accessible research lecture notes, including an established
+  `[slug]_lec.tex` target: use
   [.agents/skills/undergraduate-lecture/SKILL.md](.agents/skills/undergraduate-lecture/SKILL.md)
   as a paper-writing overlay, not a second pipeline.
 - CVs, grant/application forms, or resuming their interview: use

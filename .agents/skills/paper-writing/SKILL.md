@@ -9,6 +9,11 @@ Paths in code use the repository root. Resolve the target from the request and
 existing project before asking questions. A natural request such as
 「この資料から論文を書いて」「導入が分かりづらい」「日本語版にして」
 is sufficient; no activation command is needed.
+An output choice such as 「pf/enだけで」 is also sufficient. Follow the output-set
+contract in [pipeline](../../../rules/pipeline.md): preserve the chosen artifacts
+in `design.md`, create only those requested, and do not count unselected
+translations or lecture notes as missing completion requirements. A lecture
+may be produced directly from the authoritative paper without a translation.
 
 ## Establish scope and read the rules
 
@@ -37,7 +42,8 @@ is sufficient; no activation command is needed.
    actual role definitions in `.codex/agents/`, including their model and effort.
    Translation or explanatory companions additionally use
    [companions](../../../rules/companions.md). Undergraduate-accessible research
-   notes additionally use [undergraduate-lecture](../undergraduate-lecture/SKILL.md)
+   notes (including an established `[slug]_lec.tex` target) additionally use
+   [undergraduate-lecture](../undergraduate-lecture/SKILL.md)
    once as an overlay, without recursively starting another pipeline. CVs and
    grant/application interviews instead use
    [application-interview](../application-interview/SKILL.md), not this workflow.
