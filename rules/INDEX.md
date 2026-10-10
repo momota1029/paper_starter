@@ -6,6 +6,7 @@
 
 | 規則 | 使用場面 |
 | --- | --- |
+| [agent-orchestration](agent-orchestration.md) | LunaとSolの指示合議、必要時のタスク分解、SolからAstraへの証明引継ぎ |
 | [logical-writing](logical-writing.md) | 文・段落の基本的な論理、指示語、条件、推論 |
 | [argument-audit](argument-audit.md) | 定義・記号・根拠・推論を台帳で点検 |
 | [quality-contract](quality-contract.md) | 既有知識外の入力の確認一覧、初出帰属、条件の拘束力と承認の引継ぎ |

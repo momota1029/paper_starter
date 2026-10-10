@@ -1,8 +1,8 @@
 # カスタムサブエージェントとモデルの振り分け
 
-このフォルダには、実際に読み込むプロジェクト設定 [.codex/config.toml](../.codex/config.toml) と、役割ごとの [.codex/agents/](../.codex/agents/) の TOML 定義を含める。主担当のモデルは固定せず、ユーザーの選択を維持する。サブエージェントでは、限定した抽出・照合に `gpt-6-luna`、設計・執筆・論証の判断に `gpt-6.1-sol` を使い、どちらも reasoning effort を `high` に指定する。
+このフォルダには、実際に読み込むプロジェクト設定 [.codex/config.toml](../.codex/config.toml) と、役割ごとの [.codex/agents/](../.codex/agents/) の TOML 定義を含める。主担当のモデルは固定せず、ユーザーの選択を維持する。限定した抽出・照合は `gpt-6-luna`、指示解釈・分解・設計・執筆・証明は `gpt-6.1-sol`、証明の難所は `gpt-6-astra` を使う。指示解釈とタスク分解の reasoning effort は `medium`、Astra の証明役は `xhigh`、他の同梱役は `high` とする。
 
-設定形式は 2026-10-02 に確認した [OpenAI 公式の Subagents](https://learn.chatgpt.com/docs/agent-configuration/subagents) に基づく。現行のローカル Codex は `.codex/agents/` の独立した TOML をカスタム定義として扱い、`name`、`description`、`developer_instructions` を必要とする。本スターターでは各ファイルにモデル・推論強度・sandbox も明示する。
+設定形式は 2026-10-10 に再確認した [OpenAI 公式の Subagents](https://learn.chatgpt.com/docs/agent-configuration/subagents) に基づく。現行のローカル Codex は `.codex/agents/` の独立した TOML をカスタム定義として扱い、`name`、`description`、`developer_instructions` を必要とする。本スターターでは各ファイルにモデル・推論強度・sandbox も明示する。
 
 互換性のため、`config.toml` にも `[agents.<role>]` の `description` と
 `config_file = "agents/<role>.toml"` を登録してある。内容の正本は各役のTOMLで、
@@ -11,10 +11,16 @@
 
 ## 通常の依頼から起動する
 
-主担当は依頼の対象とリスクを読み取り、[paper-writing スキル](../.agents/skills/paper-writing/SKILL.md) と [review-loop.md](../rules/review-loop.md) に従って必要な役だけを選ぶ。利用者が毎回「Luna を呼ぶ」「構造監査を行う」と指定する必要はない。明示的な単独作業の指定は優先する。通常の質問、索引更新、誤字だけの変更で全役を起動しない。
+まず [指示の合議・タスク分解・証明の引継ぎ](../rules/agent-orchestration.md) に従う。Luna が主担当なら、新しいユーザーの作業指示や途中の訂正ごとに `intent_interpreter` と目的・範囲・完了条件を照合する。索引更新や誤字修正も短く照合するが、全体設計や全役レビューは起動しない。停止・権限撤回は合議を待たず直ちに守る。
+
+合議後は依頼の対象とリスクを読み取り、該当するスキルを選ぶ。論文の仕事では [paper-writing スキル](../.agents/skills/paper-writing/SKILL.md) と [review-loop.md](../rules/review-loop.md) に従い、保守・索引・申請書を論文制作へ広げない。利用者が毎回役割名を指定する必要はない。明示的な単独作業の指定は優先し、挨拶・進捗だけの質問・内部報告は必須合議を起動しない。
 
 | 依頼・観測されたリスク | 起動する役 | モデル | 入出力・報告上の区分 |
 | --- | --- | --- | --- |
+| Luna が新しい作業指示・途中の訂正を受ける | [intent_interpreter](../.codex/agents/intent_interpreter.toml) | Sol / medium | 指示原文と既存制約から目的・範囲・完了条件を返す。承認・独立レビューではない |
+| 複数依存や難所により実行順が不明、方針が実質的に変わる | [task_decomposer](../.codex/agents/task_decomposer.toml) | Sol / medium | 通常二〜四件の実行可能な割当。明確な単純作業では省略 |
+| 指定した命題の証明構成、既存の穴の修復、反例探索 | [prover](../.codex/agents/prover.toml) | Sol / high | 読み取り専用の証明報告。作成側であり独立査読ではない |
+| Sol が残した具体的な証明の難所、中核の衝突、明示された難問 | [prover_astra](../.codex/agents/prover_astra.toml) | Astra / xhigh | 主担当が引継ぎ票を渡す。元の定理を維持し、導出・反例・残る穴を返す |
 | ファイル、記号、引用、規則候補の一覧が必要 | [inventory](../.codex/agents/inventory.toml) | Luna | 所在と範囲を抽出。独立レビューの合格には数えない |
 | 新規論文、大幅改稿、節順の設計、採用指摘を修正計画へまとめる | [designer](../.codex/agents/designer.toml) | Sol | Spec。自分の設計を独立 Audit しない |
 | 確定した設計・修正束を原稿へ反映、翻訳 | [writer](../.codex/agents/writer.toml) | Sol | Generate。通常の原稿編集権限を持つ唯一のサブエージェント |
@@ -32,7 +38,7 @@
 | 履歴書・申請書の事実・要件の確認 | [application_reviewer](../.codex/agents/application_reviewer.toml) | Luna | 原稿制作から独立した限定チェック。資格や内容の曖昧さはSolへ |
 | 現行版の人間による最終通読 | 人間の担当者 | 対象外 | `human`。AI の定義を作らず、AI の報告で代用しない |
 
-`Luna` は `gpt-6-luna`、`Sol` は `gpt-6.1-sol` の略記。論文の報告区分は [tools/paper.py](../tools/paper.py) の役割名に対応する。申請書の二役は論文の最終確認人数に数えない。モデル名、役割名、実行ごとの `reviewer_id` は別物である。同じ役割でも各独立実行には別の ID を付け、設計・執筆に参加した ID を記録する。初読者と情報を持つ専門監査者を同一実行で兼任させない。
+`Luna` は `gpt-6-luna`、`Sol` は `gpt-6.1-sol`、`Astra` は `gpt-6-astra` の略記。表で推論強度を省略した既存役は全て `high`。論文の報告区分は [tools/paper.py](../tools/paper.py) の役割名に対応する。指示解釈・分解・証明の四役と申請書の二役は論文の最終確認人数に数えず、新しいレビュー区分も作らない。モデル名、役割名、実行ごとの `reviewer_id` は別物である。同じ役割でも各独立実行には別の ID を付け、設計・証明の構成・執筆に参加した ID を記録する。初読者と情報を持つ専門監査者を同一実行で兼任させない。
 
 この表は分野横断で再利用する役割のカタログであり、全分野の専門家が同梱されているという意味ではない。変更した結論・証明・分析に必要な専門性が一般の `correctness_reviewer` の範囲を超える場合、プロジェクト契約で必要な専門家・独立担当・根拠を特定し、必要なら専用の役割定義を追加する。適任者を確保できない場合は、一般レビューで代用せず `INDEPENDENT_CHECKS_INCOMPLETE` として未確認範囲を残す。役割数の多さ自体を品質指標にしない。
 
@@ -43,6 +49,12 @@
 設定上の上限は主担当を除く同時 3 スレッドである。一ラウンドのレビュー人数や総ラウンド数の上限ではない。L0–L3 のリスク別予算は [review-loop.md](../rules/review-loop.md) を使い、必要な担当が 3 人を超える場合は独立した組に分ける。設計、執筆、修正後の検査のような依存する工程を並列にしない。
 
 主担当は対象版、範囲、必要な入力、制約、返す報告を明示する。専門監査には対象資料と必要な規則を渡せる。原稿の結論を追認させる指示は渡さない。報告の採否、記録、修正束の作成、ビルド、完了判断は主担当が行う。葉の担当はさらにエージェントを起動せず、Git 操作や外部送信を行わない。レビュー担当は原稿・台帳を編集せず、観測を返し、主担当が保存する。
+
+指示解釈・分解・証明も同じ三枠を使う。証明の通常の同時割当は二つまで、
+うち Astra は一つまで。Sol がエスカレーション報告を返したら、主担当が
+`prover_astra` を新しい履歴で起動する。依存関係のない別の補題は並行して解ける。
+難所・引継ぎ票・進展のない反復の扱いは [証明の運用](../rules/agent-orchestration.md)
+を正本とし、ここで別の失敗回数や承認条件を追加しない。
 
 Luna が用語の意味、資料同一性、適用条件、因果、引用支持などを決められない場合は、該当する Sol 役へ範囲を絞って引き継ぐ。これは通常の経路であり、毎回の利用者承認を追加しない。難しい読みは最初から `blind_reader_sol` を選んでよい。修正後も同じ読書障害が残る場合は、設計を再検討したうえで新しい Sol 読者を使う。Luna の不合格を消すため、未変更の原稿を合格するまで読み直させてはならない。
 
@@ -85,15 +97,44 @@ native起動と同一の手法とは扱わず、完全隔離や理解の自動�
 
 公式仕様では、カスタム定義に明記した `model` と `model_reasoning_effort` が優先される。ファイル適用前の設定は、明示的な spawn 値、`[agents]` の既定、親の値の順に解決される。したがって、名前付き定義を選べるクライアントでは、表の役割名を実際の起動先に指定する。モデル名を依頼本文へ書くだけで、選択が行われたとは扱わない。[設定の優先関係](https://learn.chatgpt.com/docs/agent-configuration/subagents#custom-agents)
 
+特に `prover` は Sol/high を固定しているため、この役に Astra の spawn 値を
+添えるだけでは切替にならない。名前付き起動では **`prover_astra` を選ぶ**。
+こちらの定義は Astra/xhigh を固定している。通常の役を実行中に書き換えて
+共有設定を切り替える必要はない。`intent_interpreter` は Luna を支援する
+Sol/medium の役であり、合議役自身を Luna で起動しない。
+
+Astra の `xhigh` は、2026-10-10 の汎用起動確認で `high` が
+`unsupported_value`（受理する値は `xhigh`）として拒否されたことに対応する。
+この観測を全てのクライアントの利用権・対応強度の保証には広げない。
+環境が要求値を拒否したらエラーを残し、実際に受理される設定を確認する。
+
+同日の汎用起動では、Sol/medium の指示解釈役と、修正後の Astra/xhigh の証明役から
+応答を回収した。前者は合成した範囲縮小の指示、後者は小さな証明の引継ぎ票で
+確認したもので、難問での性能評価ではない。指定値と応答取得は確認したが、
+実モデル・推論強度の独立したメタデータと native の役割自動読込は未確認である。
+
 汎用 spawn しか公開されていない環境では、主担当が対応 TOML を読み、`developer_instructions` の内容を役割依頼へ渡し、モデルと推論強度を実際のツール引数に指定する。例えば、この形式のツールでは次の値を使う。これは引数の例であり、環境に存在しない API を仮定して実行しない。
 
 ```json
 {
-  "task_name": "argument_check_01",
+  "task_name": "intent_01",
   "fork_turns": "none",
   "model": "gpt-6.1-sol",
-  "reasoning_effort": "high",
-  "message": "対応する developer_instructions と、対象版・範囲・入力・返す報告をここに渡す"
+  "reasoning_effort": "medium",
+  "message": "intent_interpreter.toml の developer_instructions 全文と、ユーザー指示原文・既存制約・対象版・返す報告をここに渡す"
+}
+```
+
+証明の引継ぎでは、元の役の会話を継続せず、次のように新しい担当へ渡す。
+同じ形式で通常の証明を起動するときは `prover.toml` と Sol/high を選ぶ。
+
+```json
+{
+  "task_name": "proof_gap_astra_01",
+  "fork_turns": "none",
+  "model": "gpt-6-astra",
+  "reasoning_effort": "xhigh",
+  "message": "prover_astra.toml の developer_instructions 全文と、運用規則に従う命題・仮定・基準版・確定部分・失敗した方法・今回の一点・成功条件をここに渡す"
 }
 ```
 

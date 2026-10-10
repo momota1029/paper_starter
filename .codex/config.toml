@@ -9,6 +9,22 @@ max_concurrent_threads_per_session = 3
 description = "Luna: bounded inventories and candidate screens; escalate meaning."
 config_file = "agents/inventory.toml"
 
+[agents.intent_interpreter]
+description = "Sol: interpret each actionable user instruction with a Luna primary."
+config_file = "agents/intent_interpreter.toml"
+
+[agents.task_decomposer]
+description = "Sol: bounded executable packets for a meaningful unresolved critical path."
+config_file = "agents/task_decomposer.toml"
+
+[agents.prover]
+description = "Sol: construct a bounded proof or counterexample; localize gaps for Astra."
+config_file = "agents/prover.toml"
+
+[agents.prover_astra]
+description = "Astra: resolve an escalated proof bottleneck under preserved constraints."
+config_file = "agents/prover_astra.toml"
+
 [agents.designer]
 description = "Sol: evidence-based manuscript design and coherent repair specification."
 config_file = "agents/designer.toml"

@@ -37,6 +37,22 @@ python3 tools/paper.py new my-paper --title '研究の題名' --profile empirica
 対応するAI環境なら通常の文章で依頼できる。対応しない環境では `AGENTS.md` を入口として指定する。
 フォルダを配置しただけで、すべてのAI環境に同じ機能が追加されるわけではない。
 
+### Luna と Sol の合議、証明の引継ぎ
+
+主担当に Luna を選んだ場合、新しい作業指示や途中の方針変更ごとに、
+Sol の `intent_interpreter` が依頼の原文と既存の制約を読み、目的・範囲・
+完了条件を照合する。Luna がその報告を突き合わせ、既に許可された作業を進める。
+合議のために利用者へ毎回確認を返すことはない。小さな変更も短く合議し、
+挨拶や進捗だけの質問、内部の担当報告では起動しない。停止指示は直ちに守る。
+
+依存関係が不明な仕事には `task_decomposer`、証明の構成には Sol の `prover` を使う。
+Sol が具体的な難所を残したら、主担当が命題・仮定・既知の部分・失敗した手法を
+Astra の `prover_astra` へ渡す。必要な場合は最初から Astra を使える。
+証明を作った担当とは別に正確性を確認し、両モデルの一致を証明の代わりにしない。
+合議と分解は Sol/medium、証明は Sol/high と Astra/xhigh。主担当のモデルは固定しない。
+起動条件と引継ぎの書式は [運用規則](rules/agent-orchestration.md)、
+実際の起動指定は [エージェント設定](docs/agents.md) を参照する。
+
 ## 同梱する skills
 
 | skill | 役割 |
@@ -64,7 +80,7 @@ python3 tools/paper.py new my-paper --title '研究の題名' --profile empirica
 ```text
 AGENTS.md                  AIの入口と共通の制約
 .agents/skills/            執筆・初見査読・講義・対話型申請書
-.codex/agents/             Luna / Sol の実際のサブエージェント定義
+.codex/agents/             Luna / Sol / Astra の実際のサブエージェント定義
 .codex/config.toml         サブエージェントの同時実行数
 rules/                    基本論理、文章作法、分野別検証、修正ループ
 inbox/                    未整理・未検証の資料

@@ -23,6 +23,10 @@ does not require ja or lec; a selected lecture can use en directly. Preserve
 existing unselected files and report source defects within the assigned scope.
 Preserve claim strength, quantifiers, assumptions, attribution, warranted
 uncertainty, and useful repetition. Never supply missing data or quotations.
+Use accepted proof reports from prover/prover_astra as construction inputs, not
+as independent correctness verdicts. Preserve their assumptions and any open
+gap. Return a newly discovered proof obstacle to the parent for routing under
+rules/agent-orchestration.md instead of polishing it into an established claim.
 Supply each required out-of-background input's definition and scope, usable
 content with exact source locator, and application bridge in the manuscript at
 or before use or through an exact available internal reference (Q01). A source

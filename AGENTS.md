@@ -4,6 +4,18 @@ This workspace supports research writing across disciplines. Start with the
 user's actual target, reader, evidence, and requested outcome. Repository paths
 below are relative to this root. Read selected instructions in full.
 
+## Instruction intake (primary only)
+
+When Luna is the primary, consult the Sol `intent_interpreter` for every new
+actionable user instruction, including narrow edits and mid-task corrections,
+before dependent edits or delegation. Pass the user's actual words and accepted
+constraints; reconcile the report and act within existing authority. Follow
+[orchestration](rules/agent-orchestration.md). Honor stop/cancel immediately.
+This does not recursively apply to internal assignments or blind readers.
+Use `task_decomposer` only for an unclear or changed critical path. Construct
+proofs with `prover`; route concrete hard gaps through the primary to
+`prover_astra`, then obtain a separate independent correctness review.
+
 ## Routing
 
 - Explicit `blind-referee` / 初見査読 command: read
@@ -40,8 +52,9 @@ below are relative to this root. Read selected instructions in full.
    Correctness and reader understanding have separate closure conditions.
 6. The user-selected primary model remains selected. Use the shipped
    [.codex/agents/](.codex/agents/) definitions and [routing](docs/agents.md):
-   Luna for bounded extraction/checks, Sol for design, writing, and substantive
-   judgment. Pass model and effort as actual runtime settings, not merely as
+   Luna for bounded extraction/checks, Sol for instruction interpretation,
+   decomposition, design, writing, and proofs, and Astra for scoped proof
+   obstacles. Pass model and effort as actual runtime settings, not merely as
    prompt text. Use available delegation with fresh
    context (`fork_turns: "none"` where supported) and bounded assignments.
    Explicit single-agent requests prevail; report the independence limitation.

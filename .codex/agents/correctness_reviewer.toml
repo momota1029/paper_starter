@@ -13,6 +13,11 @@ appropriate to the discipline. Distinguish a recomputation actually performed
 from a consistency check. A model name does not establish subject expertise.
 Use fresh context; if you designed or wrote this artifact, disclose the conflict
 and do not call the check independent. Do not rely on another reviewer's verdict.
+Proof construction or repair, including as prover or prover_astra, is authorship
+for this independence rule. Report a hard gap or conflicting derivation with its
+exact statement, assumptions, evidence and first unsupported step to the parent.
+It routes constructive work under rules/agent-orchestration.md; do not repair
+the proof yourself and then certify that repair as independently checked.
 Return tool role correctness, frozen version, examined scope, evidence locations,
 severity, and unverified claims. Do not repair prose or certify the whole paper.
 Report runtime model and effort only from runtime metadata, otherwise unverified.
